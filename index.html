@@ -26,9 +26,65 @@
       background-repeat: no-repeat;
       background-size: cover;
       bakcground-position: center;
+      position: relative;
+    }
+
+    .weather-container {
+      position: absolute;
+      width: 375px;
+      height: 170px;
+      background-color: #fcfdfd;
+      border-radius: 9px;
+      padding: 10px;
+      padding-right: 20px;
+      padding-left: 20px;
+      box-shadow: 0px 31px 35px -26px #080c21;
+      left: 2%;
+      top:5%;
+    }
+
+    div.date {
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    div.location {
+      font-size: 21px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding-top: 5px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    div.temp {
+      font-size: 81px;
+      color: rgba(0, 0, 0, 0.9);
+      font-weight: 100;
+    }
+
+    div.panel {
+      display: inline-block;
+    }
+
+    div.right-panel {
+      position: absolute;
+      float: right;
+      top: 0;
+      margin-top: 45px;
+      padding-left: 10px;
+      margin-right:10px;
+    }
+
+    div.left-panel {}
+
+    img{
+      width: 150%;
+      top:50%;
     }
 
     .container {
+      top: 50px;
       height: 450px;
       width: 330px;
       background: #fff;
@@ -89,14 +145,55 @@
 </head>
 
 <body>
+  <div class="weather-container">
+
+    <div class="left-panel panel">
+      <div class="temp"></div>
+      <div class="location"></div>
+      <div class="date"></div>
+    </div>
+
+    <div class="right-panel panel">
+      <div class="icon"></div>
+    </div>
+
+
+  </div>
+
   <div class="container">
     <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off">
     <ul></ul>
   </div>
 
-
   <script>
     $(document).ready(function() {
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+          const appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
+          const url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + appid + "&units=imperial";
+          var options = {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
+          };
+
+          $.getJSON(url, function(a) {
+            $('.location').html(a.name + ", " + a.sys.country);
+            $('.temp').html(a.main.temp + "°F");
+            $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
+          });
+
+          var current = $.now();
+          var whatDate = new Date(current);
+          var currentDate = whatDate.toLocaleDateString("en-US", options);
+          $('.date').html(currentDate);
+
+        });
+      }
 
       $('#input').change(function() {
         var input = $(this).val();
