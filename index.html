@@ -21,6 +21,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-image: url("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
     }
 
     .container {
@@ -41,8 +46,8 @@
       border-radius: 5px;
       background: #666;
       color: #fff;
-      padding:0 10px;
-      margin:15px 0;
+      padding: 0 10px;
+      margin: 15px 0;
     }
 
     #input::placeholder {
@@ -59,7 +64,8 @@
       position: relative;
     }
 
-    ul .fa-check, .fa-trash {
+    ul .fa-check,
+    .fa-trash {
       position: absolute;
       cursor: pointer;
     }
@@ -84,7 +90,7 @@
 
 <body>
   <div class="container">
-    <input type="text" id="input" placeholder="Press 'enter' to Add New Task">
+    <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off">
     <ul></ul>
   </div>
 
