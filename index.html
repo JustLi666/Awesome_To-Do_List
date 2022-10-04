@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Awesome To-Do List</title>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style media="screen">
     * {
       margin: 0;
@@ -39,8 +39,8 @@
       padding-right: 20px;
       padding-left: 20px;
       box-shadow: 0px 31px 35px -26px #080c21;
-      left: 2%;
-      top:5%;
+      left: 15%;
+      top: 5%;
     }
 
     div.date {
@@ -73,30 +73,33 @@
       top: 0;
       margin-top: 45px;
       padding-left: 10px;
-      margin-right:10px;
+      margin-right: 10px;
     }
 
     div.left-panel {}
 
-    img{
+    img {
       width: 150%;
-      top:50%;
+      top: 50%;
     }
 
     .container {
-      top: 50px;
-      height: 450px;
-      width: 330px;
+      position: absolute;
+      right: 15%;
+      height: 80%;
+      width: 550px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
       padding: 10px;
       overflow-y: auto;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     #input {
       height: 50px;
-      width: 100%;
+      width: 88%;
       outline: none;
       border: none;
       border-radius: 5px;
@@ -131,15 +134,36 @@
       color: green;
     }
 
+    ul .fa-check:hover {
+      right: 40px;
+      color: green;
+      text-shadow: 2px 2px 4px lightgreen;
+    }
+
     ul .fa-trash {
       right: 15px;
       color: #ff0033;
     }
 
+    ul .fa-trash:hover {
+      right: 15px;
+      color: #ff0033;
+      text-shadow: 1px 1px 6px #ff0033;
+    }
+
     ul .checked {
       background: lightgreen;
       text-decoration: line-through;
+      text-decoration-color: darkgreen;
       transition: .2s;
+    }
+
+    .fa-envelope {
+      font-size: 40px;
+      margin-left: 10px;
+      position: relative;
+      top: 10px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -161,7 +185,8 @@
   </div>
 
   <div class="container">
-    <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off">
+    <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
+    <i class="fa-solid fa-envelope"></i>
     <ul></ul>
   </div>
 
