@@ -34,13 +34,24 @@
       width: 375px;
       height: 170px;
       background-color: #fcfdfd;
-      border-radius: 9px;
+      border-radius: 5px;
       padding: 10px;
       padding-right: 20px;
       padding-left: 20px;
       box-shadow: 0px 31px 35px -26px #080c21;
-      left: 15%;
-      top: 5%;
+      left: 18%;
+      top: 10%;
+    }
+
+    .joke-container {
+      width: 375px;
+      padding: 40px;
+      background-color: #15161a;
+      position: absolute;
+      top: 37%;
+      left: 18%;
+      border-radius: 5px;
+      box-shadow: 0px 31px 35px -26px #080c21;
     }
 
     div.date {
@@ -85,7 +96,7 @@
 
     .container {
       position: absolute;
-      right: 15%;
+      right: 18%;
       height: 80%;
       width: 550px;
       background: #fff;
@@ -164,6 +175,40 @@
       position: relative;
       top: 10px;
       cursor: pointer;
+      color: #47B5FF;
+    }
+
+    .fa-face-grin-squint-tears {
+      display: block;
+      text-align: center;
+      font-size: 80px;
+      width: 100%;
+      color: #fab22e;
+    }
+
+    #joke {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+      word-wrap: break-word;
+      line-height: 30px;
+      margin: 30px 0;
+      text-transform: uppercase;
+    }
+
+    #joke-button {
+      display: block;
+      background-color: #fe9900;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      color: #171721;
+      font-weight: 600;
+      padding: 12px 25px;
+      margin: 0 auto;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -180,8 +225,12 @@
     <div class="right-panel panel">
       <div class="icon"></div>
     </div>
+  </div>
 
-
+  <div class="joke-container">
+    <i class="fa-solid fa-face-grin-squint-tears"></i>
+    <p id="joke">"Laughing is, and will always be, the best form of therapy."</p>
+    <button id="joke-button">Get Joke</button>
   </div>
 
   <div class="container">
@@ -192,6 +241,8 @@
 
   <script>
     $(document).ready(function() {
+
+      // weather
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -220,6 +271,8 @@
         });
       }
 
+      // todo list
+
       $('#input').change(function() {
         var input = $(this).val();
         $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
@@ -232,6 +285,16 @@
 
       $('ul').on('click', '.fa-check', function() {
         $(this).parent('li').toggleClass('checked');
+      });
+
+      // Joke
+
+     const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+
+      $('#joke-button').click(function() {
+        $.getJSON(jokeurl, function(j) {
+          $('#joke').html(j.joke);
+        });
       });
 
     });
