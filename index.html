@@ -31,7 +31,7 @@
 
     .weather-container {
       position: absolute;
-      width: 375px;
+      width: 378px;
       height: 170px;
       background-color: #fcfdfd;
       background-image: url('https://i.pinimg.com/originals/15/71/05/15710504898649f93190a5626de1a74c.jpg');
@@ -42,20 +42,20 @@
       padding-right: 20px;
       padding-left: 20px;
       box-shadow: 0px 31px 35px -26px #C3F8FF;
-      left: 18%;
+      left: 18.5%;
       top: 10%;
     }
 
     .joke-container {
-      width: 375px;
+      width: 365px;
       padding: 40px;
       background-color: #15161a;
       position: absolute;
-      top: 38%;
-      left: 18%;
+      top: 39%;
+      left: 18.5%;
       border-radius: 5px;
       /* box-shadow: 0 0 3px #0C7B93; */
-      box-shadow: 20px 20px 40px rgba(97,63,0,0.4);
+      box-shadow: 20px 20px 40px rgba(97, 63, 0, 0.4);
     }
 
     div.date {
@@ -115,7 +115,7 @@
       transform: translateY(-50%);
       background-image: url("https://coolhdwall.com/storage/202103/cute-anime-girl-with-sunglasses-hd-wallpaper-1440x900.jpg");
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: 78% 40%;
       background-size: cover;
       /* filter: blur(5px); */
     }
@@ -129,7 +129,7 @@
       background: #06283D;
       color: #DFF6FF;
       padding: 0 10px;
-      margin: 15px 0;
+      margin: 7px 0 15px 0;
       box-shadow: 0 0 5px #0C7B93;
     }
 
@@ -147,6 +147,10 @@
       position: relative;
       box-shadow: 0 0 10px #A4EBF3;
     }
+
+    /* ul li:nth-of-type(1n+16) {
+      display: none;
+    } */
 
     ul .fa-check,
     .fa-trash {
@@ -192,7 +196,7 @@
       cursor: pointer;
       color: #2192FF;
       text-shadow: 0 0 5px #47B5FF;
-      box-shadow: 0 0 5px #C3F8FF;
+      box-shadow: 0 0 7px #C3F8FF;
     }
 
     .fa-face-grin-squint-tears {
@@ -227,10 +231,57 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
+    #joke-button:hover {
+      display: block;
+      background-color: #fe9900;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      color: #171721;
+      font-weight: 600;
+      padding: 12px 25px;
+      margin: 0 auto;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 5px #fab22e;
+    }
+
+    .fa-circle-play {
+      font-size: 70px;
+      position: absolute;
+      bottom: 5%;
+      left: 3%;
+      text-shadow: 0 0 10px #FFE6F7;
+      color: #FFABE1;
+    }
+
+    .fa-circle-play:hover {
+      font-size: 70px;
+      position: absolute;
+      bottom: 5%;
+      left: 3%;
+      text-shadow: 0 0 10px #FF9494;
+      color: #FFABE1;
+      cursor: pointer;
+    }
+
+    #date-picker {
+      outline: none;
+      border: none;
+      border-radius: 4px;
+      background: #DFF6FF;
+      color: #2192FF;
+      padding: 1px 2px;
+      font-weight: 600;
+      box-shadow: 0 0 3px #47B5FF;
+      margin-left: 1px;
+    }
   </style>
 </head>
 
 <body>
+
   <div class="weather-container">
 
     <div class="left-panel panel">
@@ -251,10 +302,13 @@
   </div>
 
   <div class="container">
+    <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
     <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
     <i class="fa-solid fa-envelope"></i>
-    <ul></ul>
+    <ul id="list"></ul>
   </div>
+
+  <i class="fa-solid fa-circle-play"></i>
 
   <script>
     $(document).ready(function() {
@@ -293,20 +347,31 @@
       $('#input').change(function() {
         var input = $(this).val();
         $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
+        if ($('ul li').length > 15){
+          $('ul li:last').remove();
+        }
         $(this).val('');
       });
 
       $('ul').on('click', '.fa-trash', function() {
-        $(this).parent('li').fadeOut(200);
+        $(this).parent('li').fadeOut(200, function() {
+          $(this).remove();
+        });
       });
 
       $('ul').on('click', '.fa-check', function() {
         $(this).parent('li').toggleClass('checked');
       });
 
+      $('ul').each(function() {
+        $(this).parent('li').each(function(index) {
+          if (index >= 2){ $(this).remove(); }
+        });
+      });
+
       // Joke
 
-     const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+      const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
 
       $('#joke-button').click(function() {
         $.getJSON(jokeurl, function(j) {
