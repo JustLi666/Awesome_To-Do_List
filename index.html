@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Awesome To-Do List</title>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="app.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style media="screen">
     * {
@@ -365,7 +366,7 @@
   <div class="container">
     <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
     <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
-    <i class="fa-solid fa-envelope"></i>
+    <i class="fa-solid fa-envelope" action='/' method='post'></i>
     <ul id="list"></ul>
   </div>
 
@@ -442,6 +443,8 @@
       });
 
       /*play music*/
+      //if it is Audio('public/万能日记 - 风的小径.mp3'），then express won't serve the static mp3 files.
+      //run app.js and access the app thru localhost:3000 instead of directly opening index.html.
       var spring = new Audio("万能日记 - 风的小径.mp3");
       var summer = new Audio("春野杉卉 - 静かな夏.mp3");
       var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
