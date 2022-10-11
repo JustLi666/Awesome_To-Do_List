@@ -50,13 +50,12 @@
     .joke-container {
       width: 365px;
       padding: 40px;
-      background-color: #15161a;
+      background-color: #EAEAEA;
       position: absolute;
       top: 39%;
       left: 18.5%;
       border-radius: 5px;
-      /* box-shadow: 0 0 3px #0C7B93; */
-      box-shadow: 20px 20px 40px rgba(97, 63, 0, 0.4);
+      box-shadow: 5px 5px 10px #08D9D6;
     }
 
     div.date {
@@ -205,11 +204,11 @@
       text-align: center;
       font-size: 80px;
       width: 100%;
-      color: #fab22e;
+      color: #00ADB5;
     }
 
     #joke {
-      color: #fff;
+      color: #171721;
       font-size: 16px;
       font-weight: 400;
       text-align: center;
@@ -217,20 +216,23 @@
       line-height: 30px;
       margin: 30px 0;
       text-transform: uppercase;
+      font-weight: 900;
+      text-shadow: 0 0 1px white;
     }
 
     #joke-button {
       display: block;
-      background-color: #fe9900;
+      background-color: #08D9D6;
       border: none;
       padding: 5px;
       font-size: 18px;
-      color: #171721;
+      color: #222831;
       font-weight: 600;
       padding: 12px 25px;
       margin: 0 auto;
       border-radius: 5px;
       cursor: pointer;
+      box-shadow: 0 0 5px #31E1F7;
     }
 
     #joke-button:hover {
@@ -432,15 +434,23 @@
         $(this).parent('li').toggleClass('checked');
       });
 
-      // Joke
-
-      const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
-
-      $('#joke-button').click(function() {
-        $.getJSON(jokeurl, function(j) {
-          $('#joke').html(j.joke);
+      /*joke*/
+      $('#joke-button').click(async function getjoke(){
+        const dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
+          headers: {'Accept': 'application/json'}
         });
+        const dadjoke = await dadjokeurl.json();
+        $('#joke').html(dadjoke.joke);
       });
+
+      // the commented code below is the discarded jokeapi.
+      // const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+      //
+      // $('#joke-button').click(function() {
+      //   $.getJSON(jokeurl, function(j) {
+      //     $('#joke').html(j.joke);
+      //   });
+      // });
 
       /*play music*/
       //if it is Audio('public/万能日记 - 风的小径.mp3'），then express won't serve the static mp3 files.
