@@ -247,22 +247,83 @@
       box-shadow: 0 0 5px #fab22e;
     }
 
-    .fa-circle-play {
-      font-size: 70px;
+    #spring {
+      font-size: 40px;
       position: absolute;
-      bottom: 5%;
-      left: 3%;
-      text-shadow: 0 0 10px #FFE6F7;
-      color: #FFABE1;
+      bottom: 23%;
+      left: 1%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #F4F9F9;
+      cursor: pointer;
     }
 
-    .fa-circle-play:hover {
-      font-size: 70px;
+    #spring.played {
+      font-size: 40px;
       position: absolute;
-      bottom: 5%;
-      left: 3%;
-      text-shadow: 0 0 10px #FF9494;
-      color: #FFABE1;
+      bottom: 23%;
+      left: 1%;
+      text-shadow: 0 0 15px #9DF3C4;
+      color: #D7FBE8;
+      cursor: pointer;
+    }
+
+    #summer {
+      font-size: 40px;
+      position: absolute;
+      bottom: 16%;
+      left: 1%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #F4F9F9;
+      cursor: pointer;
+    }
+
+    #summer.played{
+      font-size: 40px;
+      position: absolute;
+      bottom: 16%;
+      left: 1%;
+      text-shadow: 0 0 15px #F9C5D5;
+      color: #FEE3EC;
+      cursor: pointer;
+    }
+
+    #autumn {
+      font-size: 40px;
+      position: absolute;
+      bottom: 9%;
+      left: 1%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #F4F9F9;
+      cursor: pointer;
+    }
+
+    #autumn.played {
+      font-size: 40px;
+      position: absolute;
+      bottom: 9%;
+      left: 1%;
+      text-shadow: 0 0 15px #FFD8A9;
+      color: #FDEEDC;
+      cursor: pointer;
+    }
+
+    #winter {
+      font-size: 40px;
+      position: absolute;
+      bottom: 2%;
+      left: 1%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #F4F9F9;
+      cursor: pointer;
+    }
+
+    #winter.played {
+      font-size: 40px;
+      position: absolute;
+      bottom: 2%;
+      left: 1%;
+      text-shadow: 0 0 15px #A3D8F4;
+      color: #B9FFFC;
       cursor: pointer;
     }
 
@@ -308,7 +369,14 @@
     <ul id="list"></ul>
   </div>
 
-  <i class="fa-solid fa-circle-play"></i>
+  <i class="fa-solid fa-circle-play" id="spring"></i>
+  <!-- <audio class="spring" src="万能日记 - 风的小径.mp3"></audio> -->
+  <i class="fa-solid fa-circle-play" id="summer"></i>
+  <!-- <audio class="summer" src="春野杉卉 - 静かな夏.mp3"></audio> -->
+  <i class="fa-solid fa-circle-play" id="autumn"></i>
+  <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
+  <i class="fa-solid fa-circle-play" id="winter"></i>
+  <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
 
   <script>
     $(document).ready(function() {
@@ -347,7 +415,7 @@
       $('#input').change(function() {
         var input = $(this).val();
         $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-        if ($('ul li').length > 15){
+        if ($('ul li').length > 15) {
           $('ul li:last').remove();
         }
         $(this).val('');
@@ -363,12 +431,6 @@
         $(this).parent('li').toggleClass('checked');
       });
 
-      $('ul').each(function() {
-        $(this).parent('li').each(function(index) {
-          if (index >= 2){ $(this).remove(); }
-        });
-      });
-
       // Joke
 
       const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
@@ -377,6 +439,56 @@
         $.getJSON(jokeurl, function(j) {
           $('#joke').html(j.joke);
         });
+      });
+
+      /*play music*/
+      var spring = new Audio("万能日记 - 风的小径.mp3");
+      var summer = new Audio("春野杉卉 - 静かな夏.mp3");
+      var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
+      var winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
+      var musicarray = [spring, summer, autumn, winter];
+
+      $('#spring').click(function() {
+        if (musicarray[0].paused == false) {
+          musicarray[0].pause();
+        } else {
+          musicarray[0].play();
+        }
+      });
+
+      $('#summer').click(function() {
+        if (musicarray[1].paused == false) {
+          musicarray[1].pause();
+        } else {
+          musicarray[1].play();
+        }
+      });
+      $('#autumn').click(function() {
+        if (musicarray[2].paused == false) {
+          musicarray[2].pause();
+        } else {
+          musicarray[2].play();
+        }
+      });
+      $('#winter').click(function() {
+        if (musicarray[3].paused == false) {
+          musicarray[3].pause();
+        } else {
+          musicarray[3].play();
+        }
+      });
+
+      $("#spring").on('click', function(){
+        $(this).toggleClass('played');
+      });
+      $("#summer").on('click', function(){
+        $(this).toggleClass('played');
+      });
+      $("#autumn").on('click', function(){
+        $(this).toggleClass('played');
+      });
+      $("#winter").on('click', function(){
+        $(this).toggleClass('played');
       });
 
     });
