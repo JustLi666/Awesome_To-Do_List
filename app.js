@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(express.static('public'));
-
+//
 // let mailTransporter = nodemailer.createTransport({
 //   service:"gmail",
 //   auth:{
@@ -37,10 +37,10 @@ app.use(express.static('public'));
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
-  // res.sendFile(__dirname + "/MT1990 - Winter gloves（冬天的手套）.mp3");
-  // res.sendFile(__dirname + "/N.K.杨凯 - 深秋的雨.mp3");
-  // res.sendFile(__dirname + "/万能日记 - 风的小径.mp3");
-  // res.sendFile(__dirname + "/春野杉卉 - 静かな夏.mp3");
+});
+
+app.get("/guest", function(req, res) {
+  res.sendFile(__dirname + "/guest.html");
 });
 
 app.listen(3000, function(req, res) {

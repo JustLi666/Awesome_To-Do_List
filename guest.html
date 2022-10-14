@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Awesome To-Do List</title>
+  <title>Average To-Do List</title>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="app.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -22,11 +22,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url("room.png");
+      background-image: url("average.jpg");
       height: 100%;
       background-repeat: no-repeat;
       background-size: cover;
-      bakcground-position: center;
       position: relative;
     }
 
@@ -35,14 +34,14 @@
       width: 378px;
       height: 170px;
       background-color: #fcfdfd;
-      background-image: url('sky.jpg');
+      /* background-image: url('https://i.pinimg.com/originals/15/71/05/15710504898649f93190a5626de1a74c.jpg');
       background-repeat: no-repeat;
-      background-position: 91% 10%;
+      background-position: center; */
       border-radius: 5px;
       padding: 10px;
       padding-right: 20px;
       padding-left: 20px;
-      box-shadow: 0px 31px 35px -26px #C3F8FF;
+      box-shadow: 0px 31px 35px -26px #171721;
       left: 18.5%;
       top: 10%;
     }
@@ -55,14 +54,14 @@
       top: 39%;
       left: 18.5%;
       border-radius: 5px;
-      box-shadow: 5px 5px 10px #08D9D6;
+      /* box-shadow: 5px 5px 10px #171721; */
     }
 
     div.date {
       font-size: 14px;
       font-weight: bold;
       color: rgba(0, 0, 0, 0.5);
-      text-shadow: 1px 1px 3px #000000;
+      text-shadow: 0 0 3px #000000;
     }
 
     div.location {
@@ -71,14 +70,14 @@
       text-transform: uppercase;
       padding-top: 5px;
       color: rgba(0, 0, 0, 0.7);
-      text-shadow: 1px 1px 3px #000000;
+      text-shadow: 0 0 3px #000000;
     }
 
     div.temp {
       font-size: 81px;
       color: rgba(0, 0, 0, 0.9);
       font-weight: 100;
-      text-shadow: 3px 3px 5px #000000;
+      text-shadow: 0 0 3px #000000;
     }
 
     div.panel {
@@ -108,44 +107,44 @@
       width: 550px;
       background: #fff;
       border-radius: 5px;
-      box-shadow: 0px 0px 30px #2192FF;
+      box-shadow: 0px 0px 30px #000000;
       padding: 10px;
       overflow-y: auto;
       top: 50%;
       transform: translateY(-50%);
-      background-image: url("girl.jpg");
+      /* background-image: url("https://coolhdwall.com/storage/202103/cute-anime-girl-with-sunglasses-hd-wallpaper-1440x900.jpg");
       background-repeat: no-repeat;
       background-position: 78% 40%;
-      background-size: cover;
+      background-size: cover; */
       /* filter: blur(5px); */
     }
 
     #input {
       height: 50px;
-      width: 88%;
+      width: 100%;
       outline: none;
       border: none;
       border-radius: 5px;
-      background: #06283D;
-      color: #DFF6FF;
+      background: #000000;
+      color: #eeeeee;
       padding: 0 10px;
       margin: 7px 0 15px 0;
-      box-shadow: 0 0 5px #0C7B93;
+      box-shadow: 0 0 5px #171721;
     }
 
     #input::placeholder {
-      color: #4C6793;
+      color: gray;
     }
 
     ul li {
-      background: #C3F8FF;
+      background: #eeeeee;
       color: #06283D;
       height: 40px;
       border-radius: 50px;
       margin: 10px 0;
       padding: 10px;
       position: relative;
-      box-shadow: 0 0 10px #08D9D6;
+      box-shadow: 0 0 10px #171721;
     }
 
     /* ul li:nth-of-type(1n+16) {
@@ -188,23 +187,23 @@
       box-shadow: 0 0 10px #91C788;
     }
 
-    .fa-envelope {
+    /* .fa-envelope {
       font-size: 40px;
       margin-left: 10px;
       position: relative;
       top: 10px;
       cursor: pointer;
-      color: #2192FF;
+      color: #000000;
       text-shadow: 0 0 5px #47B5FF;
       box-shadow: 0 0 7px #C3F8FF;
-    }
+    } */
 
     .fa-face-grin-squint-tears {
       display: block;
       text-align: center;
       font-size: 80px;
       width: 100%;
-      color: #00ADB5;
+      color: #171721;
     }
 
     #joke {
@@ -222,7 +221,7 @@
 
     #joke-button {
       display: block;
-      background-color: #08D9D6;
+      background-color: #eeeeee;
       border: none;
       padding: 5px;
       font-size: 18px;
@@ -232,10 +231,10 @@
       margin: 0 auto;
       border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 0 5px #31E1F7;
+      box-shadow: 0 0 5px #000000;
     }
 
-    #joke-button:hover {
+    /* #joke-button:hover {
       display: block;
       background-color: #fe9900;
       border: none;
@@ -248,8 +247,8 @@
       border-radius: 5px;
       cursor: pointer;
       box-shadow: 0 0 5px #fab22e;
-    }
-
+    } */
+/*
     #spring {
       font-size: 40px;
       position: absolute;
@@ -368,17 +367,27 @@
       text-shadow: 0 0 15px #A3D8F4;
       color: #B9FFFC;
       cursor: pointer;
+    } */
+
+    #music {
+      font-size: 50px;
+      position: absolute;
+      bottom: 4%;
+      left: 2%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #171721;
+      cursor: pointer;
     }
 
     #date-picker {
       outline: none;
       border: none;
       border-radius: 4px;
-      background: #DFF6FF;
-      color: #2192FF;
+      background: gray;
+      color: #000000;
       padding: 1px 2px;
       font-weight: 600;
-      box-shadow: 0 0 3px #47B5FF;
+      /* box-shadow: 0 0 3px #47B5FF; */
       margin-left: 1px;
     }
   </style>
@@ -408,17 +417,17 @@
   <div class="container">
     <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
     <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
-    <i class="fa-solid fa-envelope" action='/' method='post'></i>
+    <!-- <i class="fa-solid fa-envelope" action='/' method='post'></i> -->
     <ul id="list"></ul>
   </div>
 
-  <i class="fa-solid fa-circle-play" id="spring"></i>
+  <!-- <i class="fa-solid fa-circle-play" id="spring"></i> -->
   <!-- <audio class="spring" src="万能日记 - 风的小径.mp3"></audio> -->
-  <i class="fa-solid fa-circle-play" id="summer"></i>
+  <!-- <i class="fa-solid fa-circle-play" id="summer"></i> -->
   <!-- <audio class="summer" src="春野杉卉 - 静かな夏.mp3"></audio> -->
-  <i class="fa-solid fa-circle-play" id="autumn"></i>
+  <!-- <i class="fa-solid fa-circle-play" id="autumn"></i> -->
   <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
-  <i class="fa-solid fa-circle-play" id="winter"></i>
+  <i class="fa-solid fa-circle-play" id="music"></i>
   <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
 
   <script>
@@ -492,57 +501,66 @@
       //   });
       // });
 
+      var music = new Audio("辛辛君 - Redbone指弹吉他.mp3");
+      $('#music').click(function() {
+        if (music.paused == false) {
+          music.pause();
+        } else {
+          music.play();
+        }
+      });
+
       /*play music*/
       //if it is Audio('public/万能日记 - 风的小径.mp3'），then express won't serve the static mp3 files.
       //run app.js and access the app thru localhost:3000 instead of directly opening index.html.
-      var spring = new Audio("万能日记 - 风的小径.mp3");
-      var summer = new Audio("春野杉卉 - 静かな夏.mp3");
-      var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
-      var winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
-      var musicarray = [spring, summer, autumn, winter];
-
-      $('#spring').click(function() {
-        if (musicarray[0].paused == false) {
-          musicarray[0].pause();
-        } else {
-          musicarray[0].play();
-        }
-      });
-
-      $('#summer').click(function() {
-        if (musicarray[1].paused == false) {
-          musicarray[1].pause();
-        } else {
-          musicarray[1].play();
-        }
-      });
-      $('#autumn').click(function() {
-        if (musicarray[2].paused == false) {
-          musicarray[2].pause();
-        } else {
-          musicarray[2].play();
-        }
-      });
-      $('#winter').click(function() {
-        if (musicarray[3].paused == false) {
-          musicarray[3].pause();
-        } else {
-          musicarray[3].play();
-        }
-      });
-
-      $("#spring").on('click', function(){
-        $(this).toggleClass('played');
-      });
-      $("#summer").on('click', function(){
-        $(this).toggleClass('played');
-      });
-      $("#autumn").on('click', function(){
-        $(this).toggleClass('played');
-      });
-      $("#winter").on('click', function(){
-        $(this).toggleClass('played');
-      });
+      // var spring = new Audio("万能日记 - 风的小径.mp3");
+      // var summer = new Audio("春野杉卉 - 静かな夏.mp3");
+      // var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
+      // var winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
+      // var musicarray = [spring, summer, autumn, winter];
+      //
+      // $('#spring').click(function() {
+      //   if (musicarray[0].paused == false) {
+      //     musicarray[0].pause();
+      //   } else {
+      //     musicarray[0].play();
+      //   }
+      // });
+      //
+      // $('#summer').click(function() {
+      //   if (musicarray[1].paused == false) {
+      //     musicarray[1].pause();
+      //   } else {
+      //     musicarray[1].play();
+      //   }
+      // });
+      // $('#autumn').click(function() {
+      //   if (musicarray[2].paused == false) {
+      //     musicarray[2].pause();
+      //   } else {
+      //     musicarray[2].play();
+      //   }
+      // });
+      // $('#winter').click(function() {
+      //   if (musicarray[3].paused == false) {
+      //     musicarray[3].pause();
+      //   } else {
+      //     musicarray[3].play();
+      //   }
+      // });
+      //
+      // $("#spring").on('click', function(){
+      //   $(this).toggleClass('played');
+      // });
+      // $("#summer").on('click', function(){
+      //   $(this).toggleClass('played');
+      // });
+      // $("#autumn").on('click', function(){
+      //   $(this).toggleClass('played');
+      // });
+      // $("#winter").on('click', function(){
+      //   $(this).toggleClass('played');
+      // });
 
     });
   </script>
