@@ -2,14 +2,17 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
+
 const app = express();
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-
+// app.use(bodyParser.json());
 app.use(express.static('public'));
+// app.post('api/register', async(req, res)=>{
+//   console.log(req.body);
+//   res.json({status: 'ok'})
+// });
+
+
 //
 // let mailTransporter = nodemailer.createTransport({
 //   service:"gmail",
@@ -41,6 +44,14 @@ app.get("/", function(req, res) {
 
 app.get("/guest", function(req, res) {
   res.sendFile(__dirname + "/guest.html");
+});
+
+app.get("/signup", function(req, res) {
+  res.sendFile(__dirname + "/signup/signup.html");
+});
+
+app.get("/signin", function(req, res) {
+  res.sendFile(__dirname + "/signin/signin.html");
 });
 
 app.listen(3000, function(req, res) {
