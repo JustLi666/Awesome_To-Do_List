@@ -5,6 +5,7 @@
     "jquery": "^3.6.1",
     "jsdom": "^20.0.1",
     "mongoose": "^6.6.5",
-    "nodemailer": "^6.8.0"
+    "nodemailer": "^6.8.0",
+    "sqlite3": "^5.1.2"
   }
 }
