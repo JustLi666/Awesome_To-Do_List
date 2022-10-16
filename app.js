@@ -1,19 +1,51 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const sqlite3 = require('sqlite3').verbose();
-
+const bcrypt = require('bcrypt');
 const app = express();
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session');
+const methodOverride = require('method-override');
 
-//
-// let sql;
-//
+
+const users = []; //will be replaced with database.
+
+const initializePassport = require('./passport-config');
+initializePassport(
+  passport,
+  username => users.find(user => user.username === username),
+  id => users.find(user => user.id === id)
+);
+
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static('public'));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.set('view-engine', 'ejs');
+app.use(flash());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
+//
+// let sql;
+//
 //
 // //connect database
 // const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err)=>{
@@ -74,7 +106,9 @@ app.set('view-engine', 'ejs');
 //   }
 // })
 
-app.get("/", function(req, res) {
+
+
+app.get("/", checkAuthenticated, function(req, res) {
   res.render("index.ejs");
 });
 
@@ -86,17 +120,47 @@ app.get("/signup", function(req, res) {
   res.render("signup.ejs");
 });
 
-app.post('/signup', function(req, res){
-  
+app.post('/signup', async function(req, res) {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    users.push({
+      id: Date.now().toString(),
+      username: req.body.username,
+      password: hashedPassword
+    });
+    res.redirect('/signin');
+  } catch {
+    res.redirect('/signup');
+  }
+  console.log(users);
 });
 
 app.get("/signin", function(req, res) {
   res.render("signin.ejs");
 });
 
+app.post('/signin', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/signin',
+  failureFlash: true
+}));
+
 app.get("/users", function(req, res) {
   res.render("users.ejs");
 });
+
+app.delete('/logout', (req, res)=>{
+  req.logOut(function(){
+    res.redirect('/signin')
+  })
+})
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/signin')
+}
 
 app.listen(3000, function(req, res) {
   console.log("Server is running on port 3000.");

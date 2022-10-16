@@ -300,7 +300,7 @@
       cursor: pointer;
     }
 
-    #summer.played{
+    #summer.played {
       font-size: 40px;
       position: absolute;
       bottom: 16%;
@@ -381,6 +381,32 @@
       box-shadow: 0 0 3px #47B5FF;
       margin-left: 1px;
     }
+
+    #signout {
+      top: 2%;
+      left: 1.5%;
+      position: absolute;
+    }
+
+    .fa-arrow-left {
+      font-size: 50px;
+      position: absolute;
+      /* top: 3%;
+      left: 1.5%; */
+      color: #F4F9F9;
+      text-shadow: 0px 0px 5px #EEEEEE;
+      cursor: pointer;
+    }
+
+    .fa-arrow-left:hover {
+      font-size: 50px;
+      position: absolute;
+      /* top: 3%;
+      left: 1.5%; */
+      color: #F4F9F9;
+      text-shadow: 0 0 10px #EEEEEE;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -420,6 +446,10 @@
   <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
   <i class="fa-solid fa-circle-play" id="winter"></i>
   <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
+  <form id="signout" action="/logout?_method=DELETE" method="post">
+    <button type="submit"><i class="fa-solid fa-arrow-left"></i></button>
+  </form>
+
 
   <script>
     $(document).ready(function() {
@@ -475,9 +505,11 @@
       });
 
       /*joke*/
-      $('#joke-button').click(async function getjoke(){
+      $('#joke-button').click(async function getjoke() {
         const dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
-          headers: {'Accept': 'application/json'}
+          headers: {
+            'Accept': 'application/json'
+          }
         });
         const dadjoke = await dadjokeurl.json();
         $('#joke').html(dadjoke.joke);
@@ -531,16 +563,16 @@
         }
       });
 
-      $("#spring").on('click', function(){
+      $("#spring").on('click', function() {
         $(this).toggleClass('played');
       });
-      $("#summer").on('click', function(){
+      $("#summer").on('click', function() {
         $(this).toggleClass('played');
       });
-      $("#autumn").on('click', function(){
+      $("#autumn").on('click', function() {
         $(this).toggleClass('played');
       });
-      $("#winter").on('click', function(){
+      $("#winter").on('click', function() {
         $(this).toggleClass('played');
       });
 

@@ -54,7 +54,7 @@
       top: 39%;
       left: 18.5%;
       border-radius: 5px;
-      /* box-shadow: 5px 5px 10px #171721; */
+      box-shadow: 5px 5px 8px gray;
     }
 
     div.date {
@@ -379,6 +379,16 @@
       cursor: pointer;
     }
 
+    #music:hover {
+      font-size: 50px;
+      position: absolute;
+      bottom: 4%;
+      left: 2%;
+      text-shadow: 0 0 5px #000000;
+      color: #171721;
+      cursor: pointer;
+    }
+
     #date-picker {
       outline: none;
       border: none;
@@ -389,6 +399,26 @@
       font-weight: 600;
       /* box-shadow: 0 0 3px #47B5FF; */
       margin-left: 1px;
+    }
+
+    .fa-arrow-left{
+      font-size: 70px;
+      position: absolute;
+      top: 4%;
+      left: 2%;
+      color: #2192FF;
+      text-shadow: 5px 5px 10px #000000;
+      cursor: pointer;
+    }
+
+    .fa-arrow-left:hover{
+      font-size: 70px;
+      position: absolute;
+      top: 4%;
+      left: 2%;
+      color: #2192FF;
+      text-shadow: 0 0 10px #08D9D6;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -428,6 +458,7 @@
   <!-- <i class="fa-solid fa-circle-play" id="autumn"></i> -->
   <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
   <i class="fa-solid fa-circle-play" id="music"></i>
+  <a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
   <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
 
   <script>

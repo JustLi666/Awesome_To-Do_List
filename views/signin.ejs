@@ -80,25 +80,27 @@
 <body class="text-center">
 
   <main class="form-signin w-100 m-auto">
-    <form action="/signin" method="POST">
+    <form action="/signin" method="post">
       <i class="fa-solid fa-a"></i>
       <h1 class="h3 mb-3 fw-normal" style="color: #08D9D6">To-Do</h1>
-
+      <% if(messages.error) {%>
+        <%= messages.error %>
+      <%}%>
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" autocomplete="off">
-        <label for="floatingInput">Email address</label>
+        <input type="text" class="form-control" id="floatingInput" placeholder="Username" autocomplete="off" required="required" name="username">
+        <label for="floatingInput">Username</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off" required="required" name="password">
         <label for="floatingPassword">Password</label>
       </div>
 
-      <div class="checkbox mb-3">
+      <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: #08D9D6; border:none;">Sign in</button>
+      </div> -->
+      <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: #08D9D6; border:none; margin-top:15px;">Sign in</button>
       <p class="mt-5 mb-3 text-muted"><a href="/guest" style="color: gray">Guest User</a>   <a href="/signup" style="color: #08D9D6;">Sign Up Now</a></p>
     </form>
   </main>
