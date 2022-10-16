@@ -146,9 +146,9 @@
         $(this).attr("disabled", "disabled");
         var index = $("table tbody tr:last-child").index();
         var row = '<tr>' +
-          '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-          '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-          '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+          '<td><input type="text" class="form-control" name="username" id="username"></td>' +
+          '<td><input type="text" class="form-control" name="password" id="password"></td>' +
+          // '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
           '<td>' + actions + '</td>' +
           '</tr>';
         $("table").append(row);
@@ -212,7 +212,7 @@
             <tr>
               <th>Username</th>
               <th>Password</th>
-              <th>Email</th>
+              <!-- <th>Email</th> -->
               <th>Actions</th>
             </tr>
           </thead>
@@ -220,7 +220,7 @@
             <tr>
               <td>Bruce Li</td>
               <td>123456</td>
-              <td>bruce@gmail.com</td>
+              <!-- <td>bruce@gmail.com</td> -->
               <td>
                 <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                 <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>

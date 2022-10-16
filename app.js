@@ -43,16 +43,16 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-//
-// let sql;
-//
-//
-// //connect database
-// const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err)=>{
-//   if (err) return console.error(err.message);
-// });
 
-//create table
+let sql;
+
+
+//connect database
+const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err) => {
+  if (err) return console.error(err.message);
+});
+
+// create table
 // sql = 'CREATE TABLE users(id INTEGER PRIMARY KEY, username, password, email)';
 // db.run(sql);
 
@@ -71,7 +71,7 @@ app.use(methodOverride('_method'))
 //   if (err) return console.error(err.message);
 // });
 
-//query data
+// query data
 // sql = 'SELECT * FROM users';
 // db.all(sql, [], (err, rows)=>{
 //   if(err) return console.error(err.message);
@@ -149,8 +149,20 @@ app.get("/users", function(req, res) {
   res.render("users.ejs");
 });
 
-app.delete('/logout', (req, res)=>{
-  req.logOut(function(){
+app.get("/admin", function(req, res) {
+  res.render("admin.ejs");
+});
+
+app.post("/admin", function(req, res) {
+  if (req.body.code == 123456) {
+    res.render("users.ejs");
+  } else{
+    res.redirect('/admin');
+  }
+});
+
+app.delete('/logout', (req, res) => {
+  req.logOut(function() {
     res.redirect('/signin')
   })
 })
