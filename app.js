@@ -6,18 +6,19 @@ const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 
-
-let sql;
-
+//
+// let sql;
+//
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static('public'));
-
-//connect database
-const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err)=>{
-  if (err) return console.error(err.message);
-});
+app.set('view-engine', 'ejs');
+//
+// //connect database
+// const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err)=>{
+//   if (err) return console.error(err.message);
+// });
 
 //create table
 // sql = 'CREATE TABLE users(id INTEGER PRIMARY KEY, username, password, email)';
@@ -39,13 +40,13 @@ const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err)=>{
 // });
 
 //query data
-sql = 'SELECT * FROM users';
-db.all(sql, [], (err, rows)=>{
-  if(err) return console.error(err.message);
-  rows.forEach(row=>{
-    console.log(row);
-  });
-});
+// sql = 'SELECT * FROM users';
+// db.all(sql, [], (err, rows)=>{
+//   if(err) return console.error(err.message);
+//   rows.forEach(row=>{
+//     console.log(row);
+//   });
+// });
 
 
 //
@@ -74,23 +75,27 @@ db.all(sql, [], (err, rows)=>{
 // })
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.render("index.ejs");
 });
 
 app.get("/guest", function(req, res) {
-  res.sendFile(__dirname + "/guest.html");
+  res.render("guest.ejs");
 });
 
 app.get("/signup", function(req, res) {
-  res.sendFile(__dirname + "/signup/signup.html");
+  res.render("signup.ejs");
+});
+
+app.post('/signup', function(req, res){
+  
 });
 
 app.get("/signin", function(req, res) {
-  res.sendFile(__dirname + "/signin/signin.html");
+  res.render("signin.ejs");
 });
 
 app.get("/users", function(req, res) {
-  res.sendFile(__dirname + "/users.html");
+  res.render("users.ejs");
 });
 
 app.listen(3000, function(req, res) {
