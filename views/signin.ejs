@@ -14,6 +14,12 @@
   <link href="bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style>
+
+    body {background-image: url("girl.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 40%;
+    background-size: cover;}
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -65,19 +71,18 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .fa-a{
-      color:#08D9D6;
+    .fa-a {
+      color: #08D9D6;
       font-size: 100px;
     }
 
-    .fa-lock{
-      color:#3C4048;
+    .fa-lock {
+      color: #3C4048;
       font-size: 44px;
       position: absolute;
       bottom: 3%;
-      right: 1.5%;
+      left: 1.5%;
     }
-
   </style>
 
 
@@ -90,9 +95,9 @@
   <main class="form-signin w-100 m-auto">
     <form action="/signin" method="post">
       <i class="fa-solid fa-a"></i>
-      <h1 class="h3 mb-3 fw-normal" style="color: #08D9D6">To-Do</h1>
+      <h1 class="h3 mb-3 fw-normal" style="color: #08D9D6;">To-Do</h1>
       <% if(messages.error) {%>
-        <%= messages.error %>
+      <%= messages.error %>
       <%}%>
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput" placeholder="Username" autocomplete="off" required="required" name="username">
@@ -108,8 +113,8 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div> -->
-      <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: #08D9D6; border:none; margin-top:15px;">Sign in</button>
-      <p class="mt-5 mb-3 text-muted"><a href="/guest" style="color: gray">Run as Guest</a> or <a href="/signup" style="color: #08D9D6;">Sign Up Now</a></p>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" style="background-color: #08D9D6; border:none; margin-top:15px; font-weight: 600;">Sign in</button>
+      <p class="mt-5 mb-3 text-muted" style="font-weight: 600;"><a href="/guest" style="color: gray; box-shadow: 2px 2px 10px gray; background-color: #EEEEEE;">Run as Guest</a> or <a href="/signup" style="background-color: #E3FDFD;color: #00ADB5;box-shadow: 2px 2px 10px #08D9D6;">Sign Up Now</a></p>
     </form>
     <a href="/admin"><i class="fa-solid fa-lock"></i></a>
   </main>

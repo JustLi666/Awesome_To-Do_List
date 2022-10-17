@@ -146,7 +146,7 @@ app.post('/signin', passport.authenticate('local', {
 }));
 
 app.get("/users", function(req, res) {
-  res.render("users.ejs");
+  res.render("users.ejs", {username: "Bruce", password: 111111});
 });
 
 app.get("/admin", function(req, res) {
@@ -155,10 +155,17 @@ app.get("/admin", function(req, res) {
 
 app.post("/admin", function(req, res) {
   if (req.body.code == 123456) {
-    res.render("users.ejs");
+    res.redirect("/users");
   } else{
     res.redirect('/admin');
   }
+});
+
+app.get("/test", function(req, res){
+  res.render("test.ejs", {
+    listTitle: "User Accounts",
+    newItem: users
+  });
 });
 
 app.delete('/logout', (req, res) => {

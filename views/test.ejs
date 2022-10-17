@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>User Account Database</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      letter-spacing: 1px;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data.jpg");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
+      position: relative;
+    }
+
+    .container {
+      position: absolute;
+      height: 80%;
+      width: 70%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 40px #00ADB5;
+      padding: 10px;
+      overflow-y: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      background-image: url("users.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    ul .fa-trash {
+      position: absolute;
+      cursor: pointer;
+    }
+
+    ul .fa-trash {
+      right: 15px;
+      color: #ff0033;
+    }
+
+    ul .fa-trash:hover {
+      right: 15px;
+      color: #ff0033;
+      text-shadow: 0 0 6px #ff0033;
+    }
+
+    ul li {
+      background: #C3F8FF;
+      color: #06283D;
+      height: 40px;
+      border-radius: 50px;
+      margin: 10px 0;
+      padding: 10px;
+      position: relative;
+      box-shadow: 0 0 10px #08D9D6;
+      font-size: 15px;
+      font-weight: 200;
+    }
+
+    .fa-arrow-left{
+      font-size: 70px;
+      position: absolute;
+      top: 4%;
+      left: 2%;
+      color: #00ADB5;
+      text-shadow: 0 0 5px #08D9D6;
+      cursor: pointer;
+    }
+
+    .fa-arrow-left:hover{
+      font-size: 70px;
+      position: absolute;
+      top: 4%;
+      left: 2%;
+      color: #00ADB5;
+      text-shadow: 0 0 10px #08D9D6;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <ul id="list">
+      <% for(var i = 0; i < newItem.length; i++){ %>
+      <li><%= JSON.stringify(newItem[i]) %><i class='fas fa-trash'></i></li>
+      <%}%>
+    </ul>
+  </div>
+
+<a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
+
+  <script>
+    $(document).ready(function(){
+      $('ul').on('click', '.fa-trash', function() {
+        $(this).parent('li').fadeOut(200, function() {
+          $(this).remove();
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
