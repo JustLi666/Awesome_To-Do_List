@@ -44,13 +44,13 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 
-let sql;
+// let sql;
 
 
 //connect database
-const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err) => {
-  if (err) return console.error(err.message);
-});
+// const db = new sqlite3.Database("./users.db", sqlite3.OPEN_READWRITE, (err) => {
+//   if (err) return console.error(err.message);
+// });
 
 // create table
 // sql = 'CREATE TABLE users(id INTEGER PRIMARY KEY, username, password, email)';
