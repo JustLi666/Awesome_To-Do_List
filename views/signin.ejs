@@ -14,11 +14,12 @@
   <link href="bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <style>
-
-    body {background-image: url("girl.jpg");
-    background-repeat: no-repeat;
-    background-position: 50% 40%;
-    background-size: cover;}
+    body {
+      background-image: url("girl.jpg");
+      background-repeat: no-repeat;
+      background-position: 50% 40%;
+      background-size: cover;
+    }
 
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -77,11 +78,11 @@
     }
 
     .fa-lock {
-      color: #3C4048;
+      color: #008891;
       font-size: 44px;
       position: absolute;
-      bottom: 3%;
-      left: 1.5%;
+      bottom: 4%;
+      left: 2%;
     }
   </style>
 
@@ -100,12 +101,12 @@
       <%= messages.error %>
       <%}%>
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Username" autocomplete="off" required="required" name="username">
-        <label for="floatingInput">Username</label>
+        <input style="border-width: medium; border-bottom-width:thin; border-bottom-left-radius:0; border-bottom-right-radius:0; border-color:#71C9CE;" type="text" class="form-control" id="floatingInput" placeholder="Username" autocomplete="off" required="required" name="username">
+        <label for="floatingInput" style="font-weight: 600; color:#00ADB5;">Username</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off" required="required" name="password">
-        <label for="floatingPassword">Password</label>
+        <input style="border-color:#71C9CE; border-width: medium; border-top-width:thin;" type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off" required="required" name="password">
+        <label for="floatingPassword" style="font-weight: 600; color:#00ADB5;">Password</label>
       </div>
 
       <!-- <div class="checkbox mb-3">
