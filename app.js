@@ -13,7 +13,9 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const serverless = require('serverless-http');
 
+module.exports.handler = serverless(app);
 
 const users = []; //will be replaced with database.
 
@@ -181,6 +183,6 @@ function checkAuthenticated(req, res, next) {
   res.redirect('/signin')
 }
 
-app.listen(process.env.PORT || 3000, function(req, res) {
+app.listen(process.env.POST || 3000, function(req, res) {
   console.log("Server is running on port 3000.");
 });

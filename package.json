@@ -14,10 +14,27 @@
     "jsdom": "^20.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.6.5",
+    "netlify-lambda": "^2.0.15",
     "nodemailer": "^6.8.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "serve": "^14.0.1",
+    "serverless-http": "^3.0.3",
     "sqlite3": "^5.1.2"
-  }
+  },
+  "name": "atdl",
+  "description": "Awesome To-Do List\r  ## Nickname\r   ATDL\r  ## Description\r   In a common day, you may have little things like brushing your teeth and walking your dog, \r   or important matters like completing a big project assigned by your boss/professor. \r   When you have all the chores and big deals mixed up together, your day gets inefficient in a mess. \r   That is why time management is so important. \r   Before you start a day, making a note that clearly lists your tasks in a chronological order will help you avoid confusion and time waste, \r   hence, your daily works become more productive and efficient. \r   That being so, the primary goal of our project is to create a time management web application that helps the users organize their daily activities. \r   The app provides a daily schedule broken into sections in time sequence such as \"wake up\", \"morning\", \"afternoon\", etc; \r   the users can add tasks(todos), to each time section, with customized time slots reminding them when to start and finish the tasks, \r   and all that will be presented as a cute and concise to-do list. \r   What's more, we will add helpful features, like weather information and reminder email, to help users make the plans more reasonable. \r   Our app will help organize tasks and boost productivity!",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustLi666/Awesome_To-Do_List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustLi666/Awesome_To-Do_List/issues"
+  },
+  "homepage": "https://github.com/JustLi666/Awesome_To-Do_List#readme"
 }
