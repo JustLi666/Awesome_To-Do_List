@@ -13,9 +13,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
-const serverless = require('serverless-http');
 
-module.exports.handler = serverless(app);
 
 const users = []; //will be replaced with database.
 
