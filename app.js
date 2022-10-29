@@ -15,7 +15,8 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 
 
-const users = []; //will be replaced with database.
+
+const users = []; //will be replaced by database.
 
 const initializePassport = require('./passport-config');
 initializePassport(
@@ -181,6 +182,6 @@ function checkAuthenticated(req, res, next) {
   res.redirect('/signin')
 }
 
-app.listen(process.env.POST || 3000, function(req, res) {
+app.listen(3000, function(req, res) {
   console.log("Server is running on port 3000.");
 });

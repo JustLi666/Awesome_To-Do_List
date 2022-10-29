@@ -455,127 +455,216 @@
   <script>
     $(document).ready(function() {
 
-      // weather
+      // weather info feature
 
       if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition(function(position) {
 
-          var lat = position.coords.latitude;
-          var lon = position.coords.longitude;
-          const appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
-          const url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + appid + "&units=imperial";
-          var options = {
-            weekday: "long",
-            day: "numeric",
-            month: "long"
-          };
+          // location class constructor function
+          function Location() {
 
-          $.getJSON(url, function(a) {
-            $('.location').html(a.name + ", " + a.sys.country);
-            $('.temp').html(a.main.temp + "°F");
-            $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
-          });
+            let latitude;
+            let longitude;
 
-          var current = $.now();
-          var whatDate = new Date(current);
-          var currentDate = whatDate.toLocaleDateString("en-US", options);
-          $('.date').html(currentDate);
+            // latitude getter function
+            this.getLat = function() {
+              return latitude;
+            }
+            // latitude setter function
+            this.setLat = function(lat) {
+              latitude = lat;
+            }
 
+            // longitude getter function
+            this.getLon = function() {
+              return longitude;
+            }
+            // longitude setter function
+            this.setLon = function(lon) {
+              longitude = lon;
+            }
+          }
+
+          const location = new Location();
+          location.setLat(position.coords.latitude);
+          location.setLon(position.coords.longitude);
+
+
+          // Weather class constructor function
+          function Weather(lat, lon) {
+
+            this.lat = lat;
+            this.lon = lon;
+
+            let appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
+            let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + appid + "&units=imperial";
+
+            this.display = function() {
+              $.getJSON(url, function(a) {
+                $('.location').html(a.name + ", " + a.sys.country);
+                $('.temp').html(a.main.temp + "°F");
+                $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
+              });
+            }
+
+          }
+
+          const weather = new Weather(location.getLat(), location.getLon());
+          weather.display();
+
+          // Date class constructor function
+          function WhatDate() {
+            let options = {
+              weekday: "long",
+              day: "numeric",
+              month: "long"
+            };
+
+            let current = $.now();
+            let whatDate = new Date(current);
+            let currentDate = whatDate.toLocaleDateString("en-US", options);
+
+            this.displayDate = function() {
+              $('.date').html(currentDate);
+            }
+
+          }
+
+          const date = new WhatDate();
+          date.displayDate();
         });
       }
 
-      // todo list
 
-      $('#input').change(function() {
-        var input = $(this).val();
-        $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-        if ($('ul li').length > 15) {
-          $('ul li:last').remove();
+      // ListApp class constructor function
+      function ListApp() {
+
+        let userInput;
+
+        this.inputToDo = function() {
+          $('#input').change(function() {
+            userInput = $(this).val();
+            $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
+            if ($('ul li').length > 20) {
+              $('ul li:last').remove();
+            }
+            $(this).val('');
+          });
         }
-        $(this).val('');
-      });
 
-      $('ul').on('click', '.fa-trash', function() {
-        $(this).parent('li').fadeOut(200, function() {
-          $(this).remove();
-        });
-      });
-
-      $('ul').on('click', '.fa-check', function() {
-        $(this).parent('li').toggleClass('checked');
-      });
-
-      /*joke*/
-      $('#joke-button').click(async function getjoke() {
-        const dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        const dadjoke = await dadjokeurl.json();
-        $('#joke').html(dadjoke.joke);
-      });
-
-      // the commented code below is the discarded jokeapi.
-      // const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
-      //
-      // $('#joke-button').click(function() {
-      //   $.getJSON(jokeurl, function(j) {
-      //     $('#joke').html(j.joke);
-      //   });
-      // });
-
-      /*play music*/
-      //if it is Audio('public/万能日记 - 风的小径.mp3'），then express won't serve the static mp3 files.
-      //run app.js and access the app thru localhost:3000 instead of directly opening index.html.
-      var spring = new Audio("万能日记 - 风的小径.mp3");
-      var summer = new Audio("春野杉卉 - 静かな夏.mp3");
-      var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
-      var winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
-      var musicarray = [spring, summer, autumn, winter];
-
-      $('#spring').click(function() {
-        if (musicarray[0].paused == false) {
-          musicarray[0].pause();
-        } else {
-          musicarray[0].play();
+        this.trash = function() {
+          $('ul').on('click', '.fa-trash', function() {
+            $(this).parent('li').fadeOut(200, function() {
+              $(this).remove();
+            });
+          });
         }
-      });
 
-      $('#summer').click(function() {
-        if (musicarray[1].paused == false) {
-          musicarray[1].pause();
-        } else {
-          musicarray[1].play();
+        this.check = function() {
+          $('ul').on('click', '.fa-check', function() {
+            $(this).parent('li').toggleClass('checked');
+          });
         }
-      });
-      $('#autumn').click(function() {
-        if (musicarray[2].paused == false) {
-          musicarray[2].pause();
-        } else {
-          musicarray[2].play();
-        }
-      });
-      $('#winter').click(function() {
-        if (musicarray[3].paused == false) {
-          musicarray[3].pause();
-        } else {
-          musicarray[3].play();
-        }
-      });
+      }
 
-      $("#spring").on('click', function() {
-        $(this).toggleClass('played');
-      });
-      $("#summer").on('click', function() {
-        $(this).toggleClass('played');
-      });
-      $("#autumn").on('click', function() {
-        $(this).toggleClass('played');
-      });
-      $("#winter").on('click', function() {
-        $(this).toggleClass('played');
-      });
+      const atdl = new ListApp();
+      atdl.inputToDo();
+      atdl.check();
+      atdl.trash();
+
+      // JokeApp class constructor function
+      function JokeApp() {
+
+        let dadjokeurl;
+        let dadjoke;
+
+        this.createDadJoke = function() {
+          $('#joke-button').click(async function getjoke() {
+            dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            dadjoke = await dadjokeurl.json();
+            $('#joke').html(dadjoke.joke);
+          });
+        }
+      }
+
+      const dadjoke = new JokeApp();
+      dadjoke.createDadJoke();
+
+      // MusicApp class constructor function
+      function MusicApp() {
+
+        this.spring = new Audio("万能日记 - 风的小径.mp3");
+        this.summer = new Audio("春野杉卉 - 静かな夏.mp3");
+        this.autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
+        this.winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
+
+        let musicarray = [this.spring, this.summer, this.autumn, this.winter];
+
+        this.playSpring = function() {
+          $('#spring').click(function() {
+            if (musicarray[0].paused == false) {
+              musicarray[0].pause();
+            } else {
+              musicarray[0].play();
+            }
+          });
+          $("#spring").on('click', function() {
+            $(this).toggleClass('played');
+          });
+        }
+
+        this.playSummer = function() {
+          $('#summer').click(function() {
+            if (musicarray[1].paused == false) {
+              musicarray[1].pause();
+            } else {
+              musicarray[1].play();
+            }
+          });
+          $("#summer").on('click', function() {
+            $(this).toggleClass('played');
+          });
+        }
+
+        this.playAutumn = function() {
+          $('#autumn').click(function() {
+            if (musicarray[2].paused == false) {
+              musicarray[2].pause();
+            } else {
+              musicarray[2].play();
+            }
+          });
+          $("#autumn").on('click', function() {
+            $(this).toggleClass('played');
+          });
+        }
+
+        this.playWinter = function() {
+          $('#winter').click(function() {
+            if (musicarray[3].paused == false) {
+              musicarray[3].pause();
+            } else {
+              musicarray[3].play();
+            }
+          });
+          $("#winter").on('click', function() {
+            $(this).toggleClass('played');
+          });
+        }
+
+      }
+
+      const music = new MusicApp();
+
+      music.playSpring();
+      music.playSummer();
+      music.playAutumn();
+      music.playWinter();
 
     });
   </script>
