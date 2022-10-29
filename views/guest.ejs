@@ -462,66 +462,147 @@
   <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
 
   <script>
-    $(document).ready(function() {
+  $(document).ready(function() {
 
-      // weather
+    // weather info feature
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+    if (navigator.geolocation) {
 
-          var lat = position.coords.latitude;
-          var lon = position.coords.longitude;
-          const appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
-          const url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + appid + "&units=imperial";
-          var options = {
+      navigator.geolocation.getCurrentPosition(function(position) {
+
+        // location class constructor function
+        function Location() {
+
+          let latitude;
+          let longitude;
+
+          // latitude getter function
+          this.getLat = function() {
+            return latitude;
+          }
+          // latitude setter function
+          this.setLat = function(lat) {
+            latitude = lat;
+          }
+
+          // longitude getter function
+          this.getLon = function() {
+            return longitude;
+          }
+          // longitude setter function
+          this.setLon = function(lon) {
+            longitude = lon;
+          }
+        }
+
+        const location = new Location();
+        location.setLat(position.coords.latitude);
+        location.setLon(position.coords.longitude);
+
+
+        // Weather class constructor function
+        function Weather(lat, lon) {
+
+          this.lat = lat;
+          this.lon = lon;
+
+          let appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
+          let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + appid + "&units=imperial";
+
+          this.display = function() {
+            $.getJSON(url, function(a) {
+              $('.location').html(a.name + ", " + a.sys.country);
+              $('.temp').html(a.main.temp + "°F");
+              $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
+            });
+          }
+
+        }
+
+        const weather = new Weather(location.getLat(), location.getLon());
+        weather.display();
+
+        // Date class constructor function
+        function WhatDate() {
+          let options = {
             weekday: "long",
             day: "numeric",
             month: "long"
           };
 
-          $.getJSON(url, function(a) {
-            $('.location').html(a.name + ", " + a.sys.country);
-            $('.temp').html(a.main.temp + "°F");
-            $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
+          let current = $.now();
+          let whatDate = new Date(current);
+          let currentDate = whatDate.toLocaleDateString("en-US", options);
+
+          this.displayDate = function() {
+            $('.date').html(currentDate);
+          }
+
+        }
+
+        const date = new WhatDate();
+        date.displayDate();
+      });
+    }
+
+      // ListApp class constructor function
+      function ListApp() {
+
+        let userInput;
+
+        this.inputToDo = function() {
+          $('#input').change(function() {
+            userInput = $(this).val();
+            $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
+            if ($('ul li').length > 15) {
+              $('ul li:last').remove();
+            }
+            $(this).val('');
           });
+        }
 
-          var current = $.now();
-          var whatDate = new Date(current);
-          var currentDate = whatDate.toLocaleDateString("en-US", options);
-          $('.date').html(currentDate);
+        this.trash = function() {
+          $('ul').on('click', '.fa-trash', function() {
+            $(this).parent('li').fadeOut(200, function() {
+              $(this).remove();
+            });
+          });
+        }
 
-        });
+        this.check = function() {
+          $('ul').on('click', '.fa-check', function() {
+            $(this).parent('li').toggleClass('checked');
+          });
+        }
       }
 
-      // todo list
+      const atdl = new ListApp();
+      atdl.inputToDo();
+      atdl.check();
+      atdl.trash();
 
-      $('#input').change(function() {
-        var input = $(this).val();
-        $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-        if ($('ul li').length > 15) {
-          $('ul li:last').remove();
+
+      // JokeApp class constructor function
+      function JokeApp() {
+
+        let dadjokeurl;
+        let dadjoke;
+
+        this.createDadJoke = function() {
+          $('#joke-button').click(async function getjoke() {
+            dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            dadjoke = await dadjokeurl.json();
+            $('#joke').html(dadjoke.joke);
+          });
         }
-        $(this).val('');
-      });
+      }
 
-      $('ul').on('click', '.fa-trash', function() {
-        $(this).parent('li').fadeOut(200, function() {
-          $(this).remove();
-        });
-      });
-
-      $('ul').on('click', '.fa-check', function() {
-        $(this).parent('li').toggleClass('checked');
-      });
-
-      /*joke*/
-      $('#joke-button').click(async function getjoke(){
-        const dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
-          headers: {'Accept': 'application/json'}
-        });
-        const dadjoke = await dadjokeurl.json();
-        $('#joke').html(dadjoke.joke);
-      });
+      const dadjoke = new JokeApp();
+      dadjoke.createDadJoke();
 
       // the commented code below is the discarded jokeapi.
       // const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
