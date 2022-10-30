@@ -160,7 +160,8 @@
         $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         // $('[data-toggle="tooltip"]').tooltip();
       });
-      // Add row on add button click
+
+      //Add row on add button click
       $(document).on("click", ".add", function() {
         var empty = false;
         var input = $(this).parents("tr").find('input[type="text"]');
@@ -181,6 +182,7 @@
           $(".add-new").removeAttr("disabled");
         }
       });
+
       // Edit row on edit button click
       $(document).on("click", ".edit", function() {
         $(this).parents("tr").find("td:not(:last-child)").each(function() {
@@ -189,6 +191,7 @@
         $(this).parents("tr").find(".add, .edit").toggle();
         $(".add-new").attr("disabled", "disabled");
       });
+
       // Delete row on delete button click
       $(document).on("click", ".delete", function() {
         $(this).parents("tr").remove();
