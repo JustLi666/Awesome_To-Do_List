@@ -576,15 +576,6 @@
         }
       }
 
-<<<<<<< HEAD
-      // todo list
-      // todo input
-      $('#input').change(function() {
-        var input = $(this).val();
-        $('ul').append("<li>" + input + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-        if ($('ul li').length > 15) {
-          $('ul li:last').remove();
-=======
       const atdl = new ListApp();
       atdl.inputToDo();
       atdl.check();
@@ -607,35 +598,12 @@
             dadjoke = await dadjokeurl.json();
             $('#joke').html(dadjoke.joke);
           });
->>>>>>> 6a4262002a7da4aaefb4dbf378bec2c51ef7250f
         }
       }
 
-<<<<<<< HEAD
-      // delete todo
-      $('ul').on('click', '.fa-trash', function() {
-        $(this).parent('li').fadeOut(200, function() {
-          $(this).remove();
-        });
-      });
-
-      // check todo
-      $('ul').on('click', '.fa-check', function() {
-        $(this).parent('li').toggleClass('checked');
-      });
-
-      /*joke*/
-      $('#joke-button').click(async function getjoke(){
-        const dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
-          headers: {'Accept': 'application/json'}
-        });
-        const dadjoke = await dadjokeurl.json();
-        $('#joke').html(dadjoke.joke);
-      });
-=======
       const dadjoke = new JokeApp();
       dadjoke.createDadJoke();
->>>>>>> 6a4262002a7da4aaefb4dbf378bec2c51ef7250f
+
 
       // the commented code below is the discarded jokeapi.
       // const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
