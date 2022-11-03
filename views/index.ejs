@@ -461,47 +461,57 @@
 
         navigator.geolocation.getCurrentPosition(function(position) {
 
-          // location class constructor function
-          function Location() {
 
-            let latitude;
-            let longitude;
+          // Weather class
+          class Weather {
+            constructor(lat, lon, url, appid) {
+              this.lat = lat;
+              this.lon = lon;
+              this.url = url;
+              this.appid = appid;
+            }
 
             // latitude getter function
-            this.getLat = function() {
-              return latitude;
+            get getLat() {
+              return this.lat;
             }
+
             // latitude setter function
-            this.setLat = function(lat) {
-              latitude = lat;
+            set setLat(lat) {
+              this.lat = lat;
             }
 
             // longitude getter function
-            this.getLon = function() {
-              return longitude;
+            get getLon() {
+              return this.lon;
             }
+
             // longitude setter function
-            this.setLon = function(lon) {
-              longitude = lon;
+            set setLon(lon) {
+              this.lon = lon;
             }
-          }
 
-          const location = new Location();
-          location.setLat(position.coords.latitude);
-          location.setLon(position.coords.longitude);
+            // URL getter function
+            get getURL() {
+              return this.url;
+            }
 
+            // URL setter function
+            set setURL(url) {
+              this.url = url;
+            }
 
-          // Weather class constructor function
-          function Weather(lat, lon) {
+            get getAPPID() {
+              return this.appid;
+            }
 
-            this.lat = lat;
-            this.lon = lon;
+            // URL setter function
+            set setAPPID(appid) {
+              this.appid = appid;
+            }
 
-            let appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
-            let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + appid + "&units=imperial";
-
-            this.display = function() {
-              $.getJSON(url, function(a) {
+            display() {
+              $.getJSON(this.url, function(a) {
                 $('.location').html(a.name + ", " + a.sys.country);
                 $('.temp').html(a.main.temp + "°F");
                 $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
@@ -510,42 +520,55 @@
 
           }
 
-          const weather = new Weather(location.getLat(), location.getLon());
+          let appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
+          let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + appid + "&units=imperial";
+
+          const weather = new Weather(position.coords.latitude, position.coords.longitude, url, appid);
+
           weather.display();
 
-          // Date class constructor function
-          function WhatDate() {
-            let options = {
-              weekday: "long",
-              day: "numeric",
-              month: "long"
-            };
 
-            let current = $.now();
-            let whatDate = new Date(current);
-            let currentDate = whatDate.toLocaleDateString("en-US", options);
 
-            this.displayDate = function() {
-              $('.date').html(currentDate);
+          // Date class
+          class WhatDate {
+            constructor(options, current, whatDate, currentDate) {
+              this.options = options;
+              this.current = current;
+              this.whatDate = whatDate;
+              this.currentDate = currentDate;
             }
 
+            displayDate() {
+              $('.date').html(currentDate);
+            }
           }
 
-          const date = new WhatDate();
+          let options = {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
+          };
+
+          let current = $.now();
+          let whatDate = new Date(current);
+          let currentDate = whatDate.toLocaleDateString("en-US", options);
+
+          const date = new WhatDate(options, current, whatDate, currentDate);
           date.displayDate();
         });
       }
 
 
-      // ListApp class constructor function
-      function ListApp() {
+      // ListApp class
+      class ListApp {
+        constructor() {
+          this.userInput;
+        }
 
-        let userInput;
-
-        this.inputToDo = function() {
+        inputToDo() {
           $('#input').change(function() {
-            userInput = $(this).val();
-            $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
+            this.userInput = $(this).val();
+            $('ul').append("<li>" + this.userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
             if ($('ul li').length > 20) {
               $('ul li:last').remove();
             }
@@ -553,7 +576,7 @@
           });
         }
 
-        this.trash = function() {
+        trash() {
           $('ul').on('click', '.fa-trash', function() {
             $(this).parent('li').fadeOut(200, function() {
               $(this).remove();
@@ -561,7 +584,7 @@
           });
         }
 
-        this.check = function() {
+        check() {
           $('ul').on('click', '.fa-check', function() {
             $(this).parent('li').toggleClass('checked');
           });
@@ -573,27 +596,28 @@
       atdl.check();
       atdl.trash();
 
-      // JokeApp class constructor function
-      function JokeApp() {
+      // JokeApp class
+      class JokeApp {
+        constructor() {
+          this.dadjokeurl;
+          this.dadjoke;
+        }
 
-        let dadjokeurl;
-        let dadjoke;
-
-        this.createDadJoke = function() {
+        createDadJoke() {
           $('#joke-button').click(async function getjoke() {
-            dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
+            this.dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
               headers: {
                 'Accept': 'application/json'
               }
             });
-            dadjoke = await dadjokeurl.json();
-            $('#joke').html(dadjoke.joke);
+            this.dadjoke = await this.dadjokeurl.json();
+            $('#joke').html(this.dadjoke.joke);
           });
         }
       }
 
-      const dadjoke = new JokeApp();
-      dadjoke.createDadJoke();
+      const joke = new JokeApp();
+      joke.createDadJoke();
 
       // MusicApp class constructor function
       function MusicApp() {
