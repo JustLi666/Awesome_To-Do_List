@@ -234,147 +234,11 @@
       box-shadow: 0 0 5px #000000;
     }
 
-    /* #joke-button:hover {
-      display: block;
-      background-color: #fe9900;
-      border: none;
-      padding: 5px;
-      font-size: 18px;
-      color: #171721;
-      font-weight: 600;
-      padding: 12px 25px;
-      margin: 0 auto;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 0 5px #fab22e;
-    } */
-/*
-    #spring {
-      font-size: 40px;
-      position: absolute;
-      bottom: 23%;
-      left: 1%;
-      text-shadow: 0 0 10px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #spring:hover {
-      font-size: 40px;
-      position: absolute;
-      bottom: 23%;
-      left: 1%;
-      text-shadow: 0 0 15px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #spring.played {
-      font-size: 40px;
-      position: absolute;
-      bottom: 23%;
-      left: 1%;
-      text-shadow: 0 0 15px #9DF3C4;
-      color: #D7FBE8;
-      cursor: pointer;
-    }
-
-    #summer {
-      font-size: 40px;
-      position: absolute;
-      bottom: 16%;
-      left: 1%;
-      text-shadow: 0 0 10px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #summer:hover {
-      font-size: 40px;
-      position: absolute;
-      bottom: 16%;
-      left: 1%;
-      text-shadow: 0 0 15px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #summer.played{
-      font-size: 40px;
-      position: absolute;
-      bottom: 16%;
-      left: 1%;
-      text-shadow: 0 0 15px #F9C5D5;
-      color: #FEE3EC;
-      cursor: pointer;
-    }
-
-    #autumn {
-      font-size: 40px;
-      position: absolute;
-      bottom: 9%;
-      left: 1%;
-      text-shadow: 0 0 10px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #autumn:hover {
-      font-size: 40px;
-      position: absolute;
-      bottom: 9%;
-      left: 1%;
-      text-shadow: 0 0 15px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #autumn.played {
-      font-size: 40px;
-      position: absolute;
-      bottom: 9%;
-      left: 1%;
-      text-shadow: 0 0 15px #FFD8A9;
-      color: #FDEEDC;
-      cursor: pointer;
-    }
-
-    #winter {
-      font-size: 40px;
-      position: absolute;
-      bottom: 2%;
-      left: 1%;
-      text-shadow: 0 0 10px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #winter:hover {
-      font-size: 40px;
-      position: absolute;
-      bottom: 2%;
-      left: 1%;
-      text-shadow: 0 0 15px #EEEEEE;
-      color: #F4F9F9;
-      cursor: pointer;
-    }
-
-    #winter.played {
-      font-size: 40px;
-      position: absolute;
-      bottom: 2%;
-      left: 1%;
-      text-shadow: 0 0 15px #A3D8F4;
-      color: #B9FFFC;
-      cursor: pointer;
-    } */
-
     #music {
       font-size: 50px;
       position: absolute;
       bottom: 4%;
       left: 2%;
-      /* text-shadow: 0 0 10px #EEEEEE; */
       color: white;
       cursor: pointer;
     }
@@ -397,7 +261,6 @@
       color: #000000;
       padding: 1px 2px;
       font-weight: 600;
-      /* box-shadow: 0 0 3px #47B5FF; */
       margin-left: 1px;
     }
 
@@ -447,19 +310,11 @@
   <div class="container">
     <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
     <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
-    <!-- <i class="fa-solid fa-envelope" action='/' method='post'></i> -->
     <ul id="list"></ul>
   </div>
 
-  <!-- <i class="fa-solid fa-circle-play" id="spring"></i> -->
-  <!-- <audio class="spring" src="万能日记 - 风的小径.mp3"></audio> -->
-  <!-- <i class="fa-solid fa-circle-play" id="summer"></i> -->
-  <!-- <audio class="summer" src="春野杉卉 - 静かな夏.mp3"></audio> -->
-  <!-- <i class="fa-solid fa-circle-play" id="autumn"></i> -->
-  <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
   <i class="fa-solid fa-circle-play" id="music"></i>
   <a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
-  <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
 
   <script>
   $(document).ready(function() {
@@ -469,61 +324,86 @@
     if (navigator.geolocation) {
 
       navigator.geolocation.getCurrentPosition(function(position) {
+        // Weather class
+        class Weather {
+            constructor(lat, lon, url, appid) {
+              this.lat = lat;
+              this.lon = lon;
+              this.url = url;
+              this.appid = appid;
+            }
 
-        // location class constructor function
-        function Location() {
+            // latitude getter function
+            get getLat() {
+              return this.lat;
+            }
 
-          let latitude;
-          let longitude;
+            // latitude setter function
+            set setLat(lat) {
+              this.lat = lat;
+            }
 
-          // latitude getter function
-          this.getLat = function() {
-            return latitude;
+            // longitude getter function
+            get getLon() {
+              return this.lon;
+            }
+
+            // longitude setter function
+            set setLon(lon) {
+              this.lon = lon;
+            }
+
+            // URL getter function
+            get getURL() {
+              return this.url;
+            }
+
+            // URL setter function
+            set setURL(url) {
+              this.url = url;
+            }
+
+            get getAPPID() {
+              return this.appid;
+            }
+
+            // URL setter function
+            set setAPPID(appid) {
+              this.appid = appid;
+            }
+
+            display() {
+              $.getJSON(this.url, function(a) {
+                $('.location').html(a.name + ", " + a.sys.country);
+                $('.temp').html(a.main.temp + "°F");
+                $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
+              });
+            }
+
           }
-          // latitude setter function
-          this.setLat = function(lat) {
-            latitude = lat;
-          }
-
-          // longitude getter function
-          this.getLon = function() {
-            return longitude;
-          }
-          // longitude setter function
-          this.setLon = function(lon) {
-            longitude = lon;
-          }
-        }
-
-        const location = new Location();
-        location.setLat(position.coords.latitude);
-        location.setLon(position.coords.longitude);
-
-
-        // Weather class constructor function
-        function Weather(lat, lon) {
-
-          this.lat = lat;
-          this.lon = lon;
 
           let appid = "c098cc8073cb75daa7e1f9c0cd0262e6";
-          let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + appid + "&units=imperial";
+          let url = "https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + appid + "&units=imperial";
 
-          this.display = function() {
-            $.getJSON(url, function(a) {
-              $('.location').html(a.name + ", " + a.sys.country);
-              $('.temp').html(a.main.temp + "°F");
-              $('.icon').html('<img src=' + "http://openweathermap.org/img/w/" + a.weather[0].icon + ".png" + '>');
-            });
+          const weather = new Weather(position.coords.latitude, position.coords.longitude, url, appid);
+
+          weather.display();
+        
+
+        // Date class
+          class WhatDate {
+            constructor(options, current, whatDate, currentDate) {
+              this.options = options;
+              this.current = current;
+              this.whatDate = whatDate;
+              this.currentDate = currentDate;
+            }
+
+            displayDate() {
+              $('.date').html(currentDate);
+            }
           }
 
-        }
-
-        const weather = new Weather(location.getLat(), location.getLon());
-        weather.display();
-
-        // Date class constructor function
-        function WhatDate() {
           let options = {
             weekday: "long",
             day: "numeric",
@@ -534,34 +414,30 @@
           let whatDate = new Date(current);
           let currentDate = whatDate.toLocaleDateString("en-US", options);
 
-          this.displayDate = function() {
-            $('.date').html(currentDate);
-          }
+          const date = new WhatDate(options, current, whatDate, currentDate);
+          date.displayDate();
+        });
+      }
+    
 
+      // ListApp class
+      class ListApp {
+        constructor() {
+          this.userInput;
         }
 
-        const date = new WhatDate();
-        date.displayDate();
-      });
-    }
-
-      // ListApp class constructor function
-      function ListApp() {
-
-        let userInput;
-
-        this.inputToDo = function() {
+        inputToDo() {
           $('#input').change(function() {
-            userInput = $(this).val();
-            $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-            if ($('ul li').length > 15) {
+            this.userInput = $(this).val();
+            $('ul').append("<li>" + this.userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
+            if ($('ul li').length > 20) {
               $('ul li:last').remove();
             }
             $(this).val('');
           });
         }
 
-        this.trash = function() {
+        trash() {
           $('ul').on('click', '.fa-trash', function() {
             $(this).parent('li').fadeOut(200, function() {
               $(this).remove();
@@ -569,7 +445,7 @@
           });
         }
 
-        this.check = function() {
+        check() {
           $('ul').on('click', '.fa-check', function() {
             $(this).parent('li').toggleClass('checked');
           });
@@ -582,37 +458,29 @@
       atdl.trash();
 
 
-      // JokeApp class constructor function
-      function JokeApp() {
 
-        let dadjokeurl;
-        let dadjoke;
+      // JokeApp class
+      class JokeApp {
+        constructor() {
+          this.dadjokeurl;
+          this.dadjoke;
+        }
 
-        this.createDadJoke = function() {
+        createDadJoke() {
           $('#joke-button').click(async function getjoke() {
-            dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
+            this.dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
               headers: {
                 'Accept': 'application/json'
               }
             });
-            dadjoke = await dadjokeurl.json();
-            $('#joke').html(dadjoke.joke);
+            this.dadjoke = await this.dadjokeurl.json();
+            $('#joke').html(this.dadjoke.joke);
           });
         }
       }
 
-      const dadjoke = new JokeApp();
-      dadjoke.createDadJoke();
-
-
-      // the commented code below is the discarded jokeapi.
-      // const jokeurl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
-      //
-      // $('#joke-button').click(function() {
-      //   $.getJSON(jokeurl, function(j) {
-      //     $('#joke').html(j.joke);
-      //   });
-      // });
+      const joke = new JokeApp();
+      joke.createDadJoke();
 
       var music = new Audio("辛辛君 - Redbone指弹吉他.mp3");
       $('#music').click(function() {
@@ -622,60 +490,8 @@
           music.play();
         }
       });
-
-      /*play music*/
-      //if it is Audio('public/万能日记 - 风的小径.mp3'），then express won't serve the static mp3 files.
-      //run app.js and access the app thru localhost:3000 instead of directly opening index.html.
-      // var spring = new Audio("万能日记 - 风的小径.mp3");
-      // var summer = new Audio("春野杉卉 - 静かな夏.mp3");
-      // var autumn = new Audio("N.K.杨凯 - 深秋的雨.mp3");
-      // var winter = new Audio("MT1990 - Winter gloves（冬天的手套）.mp3");
-      // var musicarray = [spring, summer, autumn, winter];
-      //
-      // $('#spring').click(function() {
-      //   if (musicarray[0].paused == false) {
-      //     musicarray[0].pause();
-      //   } else {
-      //     musicarray[0].play();
-      //   }
-      // });
-      //
-      // $('#summer').click(function() {
-      //   if (musicarray[1].paused == false) {
-      //     musicarray[1].pause();
-      //   } else {
-      //     musicarray[1].play();
-      //   }
-      // });
-      // $('#autumn').click(function() {
-      //   if (musicarray[2].paused == false) {
-      //     musicarray[2].pause();
-      //   } else {
-      //     musicarray[2].play();
-      //   }
-      // });
-      // $('#winter').click(function() {
-      //   if (musicarray[3].paused == false) {
-      //     musicarray[3].pause();
-      //   } else {
-      //     musicarray[3].play();
-      //   }
-      // });
-      //
-      // $("#spring").on('click', function(){
-      //   $(this).toggleClass('played');
-      // });
-      // $("#summer").on('click', function(){
-      //   $(this).toggleClass('played');
-      // });
-      // $("#autumn").on('click', function(){
-      //   $(this).toggleClass('played');
-      // });
-      // $("#winter").on('click', function(){
-      //   $(this).toggleClass('played');
-      // });
-
-    });
+    })
+    
   </script>
 </body>
 
