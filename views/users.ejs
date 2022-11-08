@@ -164,26 +164,31 @@
     //update a row based on the clicking of the plus sign in the users data page
 
     //class constructor for editing the table data
-    function UpdateTable() {
-      let empty;
-      let input;
+    class UpdateTable {
+      //contructor for properties
+      contructor(){
+        this.empty;
+        this.input_;
+      }
+      //let empty;
+      //let input;
 
       //updates the changes made to the current selected row
-      this.addRow = function() {
+      addRow() {
         $(document).on("click", ".add", function() {
-          empty = false;
-          input = $(this).parents("tr").find('input[type="text"]');
-          input.each(function() {
+          this.empty = false;
+          this.input_ = $(this).parents("tr").find('input[type="text"]');
+          this.input_.each(function() {
             if (!$(this).val()) {
               $(this).addClass("error");
-              empty = true;
+              this.empty = true;
             } else {
               $(this).removeClass("error");
             }
           });
           $(this).parents("tr").find(".error").first().focus();
-          if (!empty) {
-            input.each(function() {
+          if (!this.empty) {
+            this.input_.each(function() {
               $(this).parent("td").html($(this).val());
             });
             $(this).parents("tr").find(".add, .edit").toggle();
@@ -192,8 +197,8 @@
         });
       }
 
-      //editing the row after the button is clicked
-      this.editedRow = function() {
+
+      editedRow() {
         $(document).on("click", ".edit", function() {
           $(this).parents("tr").find("td:not(:last-child)").each(function() {
             $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
@@ -204,7 +209,7 @@
       }
 
       //deleting the row after the button is clicked
-      this.deletedRow = function() {
+      deletedRow() {
         $(document).on("click", ".delete", function() {
           $(this).parents("tr").remove();
           $(".add-new").removeAttr("disabled");
