@@ -309,7 +309,10 @@
 
   <div class="container">
     <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
-    <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
+    <form class="add-todos">
+      <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
+      <button type="submit" style="display: none;"></button>
+    </form>
     <ul id="list"></ul>
   </div>
 
@@ -426,13 +429,19 @@
           this.userInput;
         }
 
+        storeToDo() {
+          $('#list').html(localStorage.getItem('guesttodos'));
+        }
+
         inputToDo() {
-          $('#input').change(function() {
+          $('#input').change(function(e) {
+            e.preventDefault();
             this.userInput = $(this).val();
             $('ul').append("<li>" + this.userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
             if ($('ul li').length > 10) {
-
               $('ul li:last').remove();
+            } else {
+              localStorage.setItem('guesttodos', $('#list').html());
             }
             $(this).val('');
           });
@@ -442,6 +451,7 @@
           $('ul').on('click', '.fa-trash', function() {
             $(this).parent('li').fadeOut(200, function() {
               $(this).remove();
+              localStorage.setItem('guesttodos', $('#list').html());
             });
           });
         }
@@ -449,14 +459,17 @@
         check() {
           $('ul').on('click', '.fa-check', function() {
             $(this).parent('li').toggleClass('checked');
+            localStorage.setItem('guesttodos', $('#list').html());
           });
         }
       }
 
       const atdl = new ListApp();
+      atdl.storeToDo();
       atdl.inputToDo();
       atdl.check();
       atdl.trash();
+      $('#input').focus();
 
 
 
