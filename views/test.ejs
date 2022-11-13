@@ -45,20 +45,69 @@
       background-size: cover;
     }
 
-    ul .fa-trash {
+    .fa-trash {
       position: absolute;
+      top: 3.5%;
+      right: 1.8%;
+      border: none;
+      /* Remove borders */
+      color: #ff0033;
+      /* White text */
+      padding: none;
+      /* Some padding */
+      font-size: 25px;
+      /* Set a font size */
       cursor: pointer;
+      /* Mouse pointer on hover */
     }
 
-    ul .fa-trash {
-      right: 15px;
+    .fa-trash:hover {
+      position: absolute;
+      top: 3.5%;
+      right: 1.8%;
+      border: none;
+      /* Remove borders */
       color: #ff0033;
+      /* White text */
+      padding: none;
+      /* Some padding */
+      font-size: 25px;
+      /* Set a font size */
+      cursor: pointer;
+      /* Mouse pointer on hover */
+      text-shadow: 0 0 10px #ff0033;
     }
 
-    ul .fa-trash:hover {
-      right: 15px;
-      color: #ff0033;
-      text-shadow: 0 0 6px #ff0033;
+    .fa-clock {
+      position: absolute;
+      top: 12.5%;
+      right: 1.8%;
+      border: none;
+      /* Remove borders */
+      color: #F9ED69;
+      /* White text */
+      padding: none;
+      /* Some padding */
+      font-size: 25px;
+      /* Set a font size */
+      cursor: pointer;
+      /* Mouse pointer on hover */
+    }
+
+    .fa-clock:hover {
+      top: 12.5%;
+      right: 1.8%;
+      border: none;
+      /* Remove borders */
+      color: #F9ED69;
+      /* White text */
+      padding: none;
+      /* Some padding */
+      font-size: 25px;
+      /* Set a font size */
+      cursor: pointer;
+      /* Mouse pointer on hover */
+      text-shadow: 0 0 10px #F9ED69;
     }
 
     ul li {
@@ -74,7 +123,7 @@
       font-weight: 200;
     }
 
-    .fa-arrow-left{
+    .fa-arrow-left {
       font-size: 70px;
       position: absolute;
       top: 4%;
@@ -84,7 +133,7 @@
       cursor: pointer;
     }
 
-    .fa-arrow-left:hover{
+    .fa-arrow-left:hover {
       font-size: 70px;
       position: absolute;
       top: 4%;
@@ -93,6 +142,23 @@
       text-shadow: 0 0 10px #08D9D6;
       cursor: pointer;
     }
+
+    #input {
+      height: 30px;
+      width: 95%;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      background: #06283D;
+      color: #DFF6FF;
+      padding: 0 10px;
+      margin: 7px 0 15px 0;
+      box-shadow: 0 0 5px #0C7B93;
+    }
+
+    #input::placeholder {
+      color: #4C6793;
+    }
   </style>
 </head>
 
@@ -100,22 +166,39 @@
 
 
   <div class="container">
-    <ul id="list">
-      <% for(var i = 0; i < newItem.length; i++){ %>
-      <li><%= JSON.stringify(newItem[i]) %><i class='fas fa-trash'></i></li>
-      <%}%>
-    </ul>
+    <form action="/guys" method="post">
+      <input type="text" id="input" name="userID" placeholder="Enter the ID, Click the Trashcan to DELETE the Account" autocomplete="off" maxlength="50">
+      <button type='submit' class='delete'><i class='fas fa-trash'></i></button>
+    </form>
+    <form action="/times" method="post">
+      <input type="text" id="input" name="userID" placeholder="Enter the ID, Click the Clock to See Its Creation Time" autocomplete="off" maxlength="50">
+      <button type='submit' class='delete'><i class="fa-solid fa-clock"></i></button>
+    </form>
+    <ul id="list"></ul>
   </div>
 
-<a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
+  <a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
 
   <script>
-    $(document).ready(function(){
-      $('ul').on('click', '.fa-trash', function() {
-        $(this).parent('li').fadeOut(200, function() {
-          $(this).remove();
+    $(document).ready(function() {
+
+    class UserAccount{
+      constructor(data){
+        this.data = data;
+      }
+
+      display(){
+        $.getJSON(this.data, function(a) {
+          for (var i = 0; i < a.length; i++) {
+            $('ul').append("<li>" + JSON.stringify(a[i]) + "</li>");
+          }
         });
-      });
+      }
+    }
+
+    const useraccount = new UserAccount("http://localhost:3000/guys");
+    useraccount.display();
+
     });
   </script>
 </body>

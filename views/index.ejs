@@ -17,12 +17,64 @@
       text-transform: capitalize;
     }
 
-    body {
+    body.normal {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background-image: url("room.png");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
+      position: relative;
+    }
+
+    body.winter {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("winter.png");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
+      position: relative;
+    }
+
+    body.spring {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("spring.png");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
+      position: relative;
+    }
+
+    body.autumn {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("autumn.jpg");
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bakcground-position: center;
+      position: relative;
+    }
+
+    body.summer {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("summer.png");
       height: 100%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -47,6 +99,23 @@
       top: 10%;
     }
 
+    .weather-container.autumn {
+      position: absolute;
+      width: 378px;
+      height: 170px;
+      background-color: #fcfdfd;
+      background-image: url('sky.jpg');
+      background-repeat: no-repeat;
+      background-position: 91% 10%;
+      border-radius: 5px;
+      padding: 10px;
+      padding-right: 20px;
+      padding-left: 20px;
+      box-shadow: 0px 31px 35px -26px #FDA65D;
+      left: 18.5%;
+      top: 10%;
+    }
+
     .joke-container {
       width: 378px;
       padding: 40px;
@@ -56,6 +125,28 @@
       left: 18.5%;
       border-radius: 5px;
       box-shadow: 5px 5px 10px #08D9D6;
+    }
+
+    .joke-container.autumn {
+      width: 378px;
+      padding: 40px;
+      background-color: #EAEAEA;
+      position: absolute;
+      top: 39%;
+      left: 18.5%;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px #FF8243;
+    }
+
+    .joke-container.spring {
+      width: 378px;
+      padding: 40px;
+      background-color: #EAEAEA;
+      position: absolute;
+      top: 39%;
+      left: 18.5%;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px #F999B7;
     }
 
     div.date {
@@ -109,6 +200,44 @@
       background: #fff;
       border-radius: 5px;
       box-shadow: 0px 0px 30px #2192FF;
+      padding: 10px;
+      overflow-y: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      background-image: url("girl.jpg");
+      background-repeat: no-repeat;
+      background-position: 78% 40%;
+      background-size: cover;
+      /* filter: blur(5px); */
+    }
+
+    .container.autumn {
+      position: absolute;
+      right: 18%;
+      height: 80%;
+      width: 550px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 30px #E26A2C;
+      padding: 10px;
+      overflow-y: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      background-image: url("girl.jpg");
+      background-repeat: no-repeat;
+      background-position: 78% 40%;
+      background-size: cover;
+      /* filter: blur(5px); */
+    }
+
+    .container.spring {
+      position: absolute;
+      right: 18%;
+      height: 80%;
+      width: 550px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 30px #F2789F;
       padding: 10px;
       overflow-y: auto;
       top: 50%;
@@ -207,6 +336,22 @@
       color: #00ADB5;
     }
 
+    .fa-face-grin-squint-tears.autumn {
+      display: block;
+      text-align: center;
+      font-size: 80px;
+      width: 100%;
+      color: #E26A2C;
+    }
+
+    .fa-face-grin-squint-tears.spring {
+      display: block;
+      text-align: center;
+      font-size: 80px;
+      width: 100%;
+      color: #F2789F;
+    }
+
     #joke {
       color: #171721;
       font-size: 17px;
@@ -233,6 +378,36 @@
       border-radius: 5px;
       cursor: pointer;
       box-shadow: 0 0 5px #31E1F7;
+    }
+
+    #joke-button.autumn {
+      display: block;
+      background-color: #FF8243;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      color: #222831;
+      font-weight: 600;
+      padding: 12px 25px;
+      margin: 0 auto;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 5px #FDA65D;
+    }
+
+    #joke-button.spring {
+      display: block;
+      background-color: #F999B7;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      color: #222831;
+      font-weight: 600;
+      padding: 12px 25px;
+      margin: 0 auto;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 5px #F9C5D5;
     }
 
     #joke-button:hover {
@@ -370,18 +545,6 @@
       cursor: pointer;
     }
 
-    #date-picker {
-      outline: none;
-      border: none;
-      border-radius: 4px;
-      background: #DFF6FF;
-      color: #2192FF;
-      padding: 1px 2px;
-      font-weight: 600;
-      box-shadow: 0 0 3px #47B5FF;
-      margin-left: 1px;
-    }
-
     #signout {
       top: 2%;
       left: 1.5%;
@@ -393,8 +556,28 @@
       position: absolute;
       /* top: 3%;
       left: 1.5%; */
-      color: #F4F9F9;
+      color: #71C9CE;
       text-shadow: 0px 0px 5px #EEEEEE;
+      cursor: pointer;
+    }
+
+    .fa-arrow-left.spring {
+      font-size: 50px;
+      position: absolute;
+      /* top: 3%;
+      left: 1.5%; */
+      color: #850E35;
+      text-shadow: 0px 0px 10px #F2789F;
+      cursor: pointer;
+    }
+
+    .fa-arrow-left.autumn {
+      font-size: 50px;
+      position: absolute;
+      /* top: 3%;
+      left: 1.5%; */
+      color: #E84545;
+      text-shadow: 0px 0px 10px #FFD07F;
       cursor: pointer;
     }
 
@@ -403,7 +586,7 @@
       position: absolute;
       /* top: 3%;
       left: 1.5%; */
-      color: #F4F9F9;
+      color: #C9D6DF;
       text-shadow: 0 0 10px #EEEEEE;
       cursor: pointer;
     }
@@ -411,7 +594,7 @@
 
 </head>
 
-<body>
+<body class="normal">
 
   <div class="weather-container">
 
@@ -433,9 +616,11 @@
   </div>
 
   <div class="container">
-    <input type="date" id="date-picker" value=Date min="2022-01-01" max="2029-12-31">
-    <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
-    <!-- <i class="fa-solid fa-envelope" action='/' method='post'></i> -->
+
+    <form class="add-todos">
+      <input type="text" id="input" placeholder="Press 'enter' to Add New Task" autocomplete="off" maxlength="50">
+      <button type="submit" style="display: none;"></button>
+    </form>
     <ul id="list"></ul>
   </div>
 
@@ -447,9 +632,7 @@
   <!-- <audio class="autumn" src="N.K.杨凯 - 深秋的雨.mp3"></audio> -->
   <i class="fa-solid fa-circle-play" id="winter"></i>
   <!-- <audio class="winter" src="MT1990 - Winter gloves（冬天的手套）.mp3"></audio> -->
-  <form id="signout" action="/logout?_method=DELETE" method="post">
-    <button type="submit"><i class="fa-solid fa-arrow-left"></i></button>
-  </form>
+  <a href="/logout" id="signout"><i class="fa-solid fa-arrow-left"></i></a>
 
 
   <script>
@@ -460,7 +643,6 @@
       if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(function(position) {
-
 
           // Weather class
           class Weather {
@@ -565,12 +747,19 @@
           this.userInput;
         }
 
+        storeToDo() {
+          $('#list').html(localStorage.getItem('todos'));
+        }
+
         inputToDo() {
-          $('#input').change(function() {
+          $('#input').change(function(e) {
+            e.preventDefault();
             this.userInput = $(this).val();
             $('ul').append("<li>" + this.userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-            if ($('ul li').length > 20) {
+            if ($('ul li').length > 50) {
               $('ul li:last').remove();
+            } else {
+              localStorage.setItem('todos', $('#list').html());
             }
             $(this).val('');
           });
@@ -580,6 +769,7 @@
           $('ul').on('click', '.fa-trash', function() {
             $(this).parent('li').fadeOut(200, function() {
               $(this).remove();
+              localStorage.setItem('todos', $('#list').html());
             });
           });
         }
@@ -587,14 +777,17 @@
         check() {
           $('ul').on('click', '.fa-check', function() {
             $(this).parent('li').toggleClass('checked');
+            localStorage.setItem('todos', $('#list').html());
           });
         }
       }
 
       const atdl = new ListApp();
+      atdl.storeToDo();
       atdl.inputToDo();
       atdl.check();
       atdl.trash();
+      $('#input').focus();
 
       // JokeApp class
       class JokeApp {
@@ -639,6 +832,12 @@
           });
           $("#spring").on('click', function() {
             $(this).toggleClass('played');
+            $('body,html').toggleClass('spring');
+            $('.container').toggleClass('spring');
+            $('.joke-container').toggleClass('spring');
+            $('#joke-button').toggleClass('spring');
+            $('.fa-face-grin-squint-tears').toggleClass('spring');
+            $('.fa-arrow-left').toggleClass('spring');
           });
         }
 
@@ -652,6 +851,7 @@
           });
           $("#summer").on('click', function() {
             $(this).toggleClass('played');
+            $('body,html').toggleClass('summer');
           });
         }
 
@@ -665,6 +865,13 @@
           });
           $("#autumn").on('click', function() {
             $(this).toggleClass('played');
+            $('body,html').toggleClass('autumn');
+            $('.container').toggleClass('autumn');
+            $('.joke-container').toggleClass('autumn');
+            $('#joke-button').toggleClass('autumn');
+            $('.fa-face-grin-squint-tears').toggleClass('autumn');
+            $('.weather-container').toggleClass('autumn');
+            $('.fa-arrow-left').toggleClass('autumn');
           });
         }
 
@@ -678,6 +885,7 @@
           });
           $("#winter").on('click', function() {
             $(this).toggleClass('played');
+            $('body,html').toggleClass('winter');
           });
         }
 

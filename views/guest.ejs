@@ -554,7 +554,7 @@
           $('#input').change(function() {
             userInput = $(this).val();
             $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-            if ($('ul li').length > 15) {
+            if ($('ul li').length > 10) {
               $('ul li:last').remove();
             }
             $(this).val('');
