@@ -1,0 +1,64 @@
+<-----Guest----->
+Guest: Login use case:
+Guest user clicks on "Run as Guest" on the login page.
+
+Guest: Display Weather Info use case:
+Guest user views the local weather info(Current date, weather icon, and temperature).
+
+Guest: Input Todos use case:
+Guest user types a todo in the input box and hits "enter" to add it to the list.
+
+Guest: Delete Todos use case:
+Guest user clicks on the "trashcan" next to a todo entry to delete it from the list.
+
+Guest: Check Todos use case:
+Guest user clicks on the "check mark" next to a todo entry to cross it out on the list.
+
+Guest: Logout use case:
+Guest user clicks on the "left arrow" to return to the login page.
+
+<-----User----->
+User: Login use case:
+User enters login credentials on the login page, 
+then hits "enter" or clicks on "Sign in" to access the main app.
+
+User: Display Weather Info use case:
+User views the local weather info(Current date, weather icon, and temperature).
+
+User: Get a Dad Joke use case:
+User clicks on "Get a Joke" to display a dad joke.
+
+user: Play Background Music use case:
+User clicks on a play button to play background music. 
+If the music is playing, clicking on the button will pause the music.
+
+User: Input Todos use case:
+User types a todo in the input box and hits "enter" to add it to the list.
+
+User: Delete Todos use case:
+User clicks on the "trashcan" next to a todo entry to delete it from the list.
+
+User: Check Todos use case:
+User clicks on the "check mark" next to a todo entry to cross it out on the list.
+
+User: Logout use case:
+User clicks on the "left arrow" to return to the login page.
+
+<-----Admin----->
+Admin: Login use case:
+Admin clicks on the "lock" icon on the login page to enter the admin page,
+then inputs the admin code to access the user account info database.
+
+Admin: View User Account Info use case:
+Admin views user account infomation.
+
+Admin: Check Creation Time use case:
+Admin types a specific user's ID in the yellow input box, 
+and click on the "clock" button to display the account's creation time in a popup window.
+
+Admin: Delete a User Account use case:
+Admin types a specific user's ID in the red input box, 
+and click on the "trashcan" button to delete the user account from the database.
+
+Admin: Logout use case:
+Admin clicks on the "left arrow" to return to the login page.

@@ -47,7 +47,7 @@
 
     .fa-trash {
       position: absolute;
-      top: 3.5%;
+      top: 3.3%;
       right: 1.8%;
       border: none;
       /* Remove borders */
@@ -63,7 +63,7 @@
 
     .fa-trash:hover {
       position: absolute;
-      top: 3.5%;
+      top: 3.3%;
       right: 1.8%;
       border: none;
       /* Remove borders */
@@ -143,13 +143,26 @@
       cursor: pointer;
     }
 
-    #input {
+    #input.trash {
       height: 30px;
       width: 95%;
       outline: none;
       border: none;
       border-radius: 5px;
-      background: #06283D;
+      background: #FC5185;
+      color: #DFF6FF;
+      padding: 0 10px;
+      margin: 7px 0 15px 0;
+      box-shadow: 0 0 5px #0C7B93;
+    }
+
+    #input.clock {
+      height: 30px;
+      width: 95%;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      background: #FFDE7D;
       color: #DFF6FF;
       padding: 0 10px;
       margin: 7px 0 15px 0;
@@ -167,11 +180,11 @@
 
   <div class="container">
     <form action="/guys" method="post">
-      <input type="text" id="input" name="userID" placeholder="Enter the ID, Click the Trashcan to DELETE the Account" autocomplete="off" maxlength="50">
+      <input type="text" id="input" class="trash" name="userID" placeholder="Enter the ID, Click the Trashcan to DELETE the Account" autocomplete="off" maxlength="50">
       <button type='submit' class='delete'><i class='fas fa-trash'></i></button>
     </form>
     <form action="/times" method="post">
-      <input type="text" id="input" name="userID" placeholder="Enter the ID, Click the Clock to See Its Creation Time" autocomplete="off" maxlength="50">
+      <input type="text" id="input" class="clock" name="userID" placeholder="Enter the ID, Click the Clock to See Its Creation Time" autocomplete="off" maxlength="50">
       <button type='submit' class='delete'><i class="fa-solid fa-clock"></i></button>
     </form>
     <ul id="list"></ul>
