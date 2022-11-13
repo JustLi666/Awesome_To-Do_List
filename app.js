@@ -107,7 +107,7 @@ app.get("/admin", function(req, res) {
 });
 
 app.post("/admin", function(req, res) {
-  if (req.body.code == 123456) {
+  if (req.body.code == 666666) {
     res.render("test.ejs");
   } else {
     res.redirect('/admin');
