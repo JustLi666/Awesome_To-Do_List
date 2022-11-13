@@ -388,7 +388,7 @@
           const weather = new Weather(position.coords.latitude, position.coords.longitude, url, appid);
 
           weather.display();
-        
+
 
         // Date class
           class WhatDate {
@@ -418,7 +418,7 @@
           date.displayDate();
         });
       }
-    
+
 
       // ListApp class
       class ListApp {
@@ -428,15 +428,10 @@
 
         inputToDo() {
           $('#input').change(function() {
-<<<<<<< HEAD
-            userInput = $(this).val();
-            $('ul').append("<li>" + userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-            if ($('ul li').length > 10) {
-=======
             this.userInput = $(this).val();
             $('ul').append("<li>" + this.userInput + " <i class='fas fa-check'></i><i class='fas fa-trash'></i></li>");
-            if ($('ul li').length > 20) {
->>>>>>> e3009df59fec9e4256947edf189c04116fd8125c
+            if ($('ul li').length > 10) {
+
               $('ul li:last').remove();
             }
             $(this).val('');
@@ -497,7 +492,7 @@
         }
       });
     })
-    
+
   </script>
 </body>
 
