@@ -201,7 +201,7 @@
     .fa-face-grin-squint-tears {
       display: block;
       text-align: center;
-      font-size: 80px;
+      font-size: 59px;
       width: 100%;
       color: #171721;
     }
@@ -264,7 +264,7 @@
       margin-left: 1px;
     }
 
-    .fa-arrow-left{
+    .fa-arrow-left {
       font-size: 70px;
       position: absolute;
       top: 4%;
@@ -274,7 +274,7 @@
       cursor: pointer;
     }
 
-    .fa-arrow-left:hover{
+    .fa-arrow-left:hover {
       font-size: 70px;
       position: absolute;
       top: 4%;
@@ -303,7 +303,7 @@
 
   <div class="joke-container">
     <i class="fa-solid fa-face-grin-squint-tears"></i>
-    <p id="joke">"Laughing is, and will always be, the best form of therapy."</p>
+    <p id="joke">"Create an account to unlock dad jokes and modern oriental background music."</p>
     <button id="joke-button">Get Joke</button>
   </div>
 
@@ -320,15 +320,15 @@
   <a href="/signin"><i class="fa-solid fa-arrow-left"></i></a>
 
   <script>
-  $(document).ready(function() {
+    $(document).ready(function() {
 
-    // weather info feature
+      // weather info feature
 
-    if (navigator.geolocation) {
+      if (navigator.geolocation) {
 
-      navigator.geolocation.getCurrentPosition(function(position) {
-        // Weather class
-        class Weather {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          // Weather class
+          class Weather {
             constructor(lat, lon, url, appid) {
               this.lat = lat;
               this.lon = lon;
@@ -393,7 +393,7 @@
           weather.display();
 
 
-        // Date class
+          // Date class
           class WhatDate {
             constructor(options, current, whatDate, currentDate) {
               this.options = options;
@@ -472,29 +472,10 @@
       $('#input').focus();
 
 
+      $('#joke-button').click(function() {
+        $('#joke').html("No account, no dad jokes.");
+      });
 
-      // JokeApp class
-      class JokeApp {
-        constructor() {
-          this.dadjokeurl;
-          this.dadjoke;
-        }
-
-        createDadJoke() {
-          $('#joke-button').click(async function getjoke() {
-            this.dadjokeurl = await fetch('https://icanhazdadjoke.com/', {
-              headers: {
-                'Accept': 'application/json'
-              }
-            });
-            this.dadjoke = await this.dadjokeurl.json();
-            $('#joke').html(this.dadjoke.joke);
-          });
-        }
-      }
-
-      const joke = new JokeApp();
-      joke.createDadJoke();
 
       var music = new Audio("辛辛君 - Redbone指弹吉他.mp3");
       $('#music').click(function() {
@@ -505,7 +486,6 @@
         }
       });
     })
-
   </script>
 </body>
 
