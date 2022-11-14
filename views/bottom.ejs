@@ -221,11 +221,10 @@
       overflow-y: auto;
       top: 50%;
       transform: translateY(-50%);
-      background-image: url("dog.gif");
+      background-image: url("red.gif");
       background-repeat: no-repeat;
-      background-position: 50% 15%;
+      background-position: 50% 43%;
       background-size: cover;
-      /* filter: blur(5px); */
     }
 
     .container.autumn {
@@ -240,9 +239,9 @@
       overflow-y: auto;
       top: 50%;
       transform: translateY(-50%);
-      background-image: url("dog.gif");
+      background-image: url("red.gif");
       background-repeat: no-repeat;
-      background-position: 50% 15%;
+      background-position: 50% 43%;
       background-size: cover;
     }
 
@@ -258,9 +257,9 @@
       overflow-y: auto;
       top: 50%;
       transform: translateY(-50%);
-      background-image: url("dog.gif");
+      background-image: url("red.gif");
       background-repeat: no-repeat;
-      background-position: 50% 15%;
+      background-position: 50% 43%;
       background-size: cover;
     }
 
@@ -600,8 +599,19 @@
       font-size: 16px;
       bottom: 21%;
       right: 16%;
-      text-shadow: 0 0 15px #1FAB89;
-      color: #9DF3C4;
+      text-shadow: 0 0 5px #EEEEEE;
+      color: #D6E4E5;
+      cursor: pointer;
+    }
+
+    #top.fa-circle:hover {
+      position: absolute;
+      font-size: 16px;
+      bottom: 21%;
+      right: 16%;
+      text-shadow: 0 0 10px #EEEEEE;
+      color: #EAEAEA;
+      cursor: pointer;
     }
 
     #mid.fa-circle {
@@ -619,25 +629,14 @@
       font-size: 16px;
       bottom: 11%;
       right: 16%;
-      text-shadow: 0 0 5px #EEEEEE;
-      color: #D6E4E5;
-      cursor: pointer;
+      text-shadow: 0 0 15px #1FAB89;
+      color: #9DF3C4;
     }
 
     #mid.fa-circle:hover {
       position: absolute;
       font-size: 16px;
       bottom: 16%;
-      right: 16%;
-      text-shadow: 0 0 10px #EEEEEE;
-      color: #EAEAEA;
-      cursor: pointer;
-    }
-
-    #bottom.fa-circle:hover {
-      position: absolute;
-      font-size: 16px;
-      bottom: 11%;
       right: 16%;
       text-shadow: 0 0 10px #EEEEEE;
       color: #EAEAEA;
@@ -676,9 +675,9 @@
     <ul id="list"></ul>
   </div>
 
-  <i id="top" class="fa-solid fa-circle"></i>
+  <a href="/"><i id="top" class="fa-solid fa-circle"></i></a>
   <a href="/mid"><i id="mid" class="fa-solid fa-circle"></i></a>
-  <a href="/bottom"><i id="bottom" class="fa-solid fa-circle"></i></a>
+  <i id="bottom" class="fa-solid fa-circle"></i>
 
   <i class="fa-solid fa-circle-play" id="spring"></i>
   <!-- <audio class="spring" src="万能日记 - 风的小径.mp3"></audio> -->
@@ -804,7 +803,7 @@
         }
 
         storeToDo() {
-          $('#list').html(localStorage.getItem('todos'));
+          $('#list').html(localStorage.getItem('bottomtodos'));
         }
 
         inputToDo() {
@@ -815,7 +814,7 @@
             if ($('ul li').length > 50) {
               $('ul li:last').remove();
             } else {
-              localStorage.setItem('todos', $('#list').html());
+              localStorage.setItem('bottomtodos', $('#list').html());
             }
             $(this).val('');
           });
@@ -825,7 +824,7 @@
           $('ul').on('click', '.fa-trash', function() {
             $(this).parent('li').fadeOut(200, function() {
               $(this).remove();
-              localStorage.setItem('todos', $('#list').html());
+              localStorage.setItem('bottomtodos', $('#list').html());
             });
           });
         }
@@ -833,7 +832,7 @@
         check() {
           $('ul').on('click', '.fa-check', function() {
             $(this).parent('li').toggleClass('checked');
-            localStorage.setItem('todos', $('#list').html());
+            localStorage.setItem('bottomtodos', $('#list').html());
           });
         }
       }

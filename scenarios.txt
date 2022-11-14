@@ -41,6 +41,9 @@ User clicks on the "trashcan" next to a todo entry to delete it from the list.
 User: Check Todos use case:
 User clicks on the "check mark" next to a todo entry to cross it out on the list.
 
+User: Switch Lists use case:
+User clicks on the "circles" next to the list to switch between lists.
+
 User: Logout use case:
 User clicks on the "left arrow" to return to the login page.
 

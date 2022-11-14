@@ -48,6 +48,14 @@ app.get("/", signedIn, function(req, res) {
   res.render("index.ejs");
 });
 
+app.get("/mid", signedIn, function(req, res) {
+  res.render("mid.ejs");
+});
+
+app.get("/bottom", signedIn, function(req, res) {
+  res.render("bottom.ejs");
+});
+
 app.get("/guest", function(req, res) {
   res.render("guest.ejs");
 });
